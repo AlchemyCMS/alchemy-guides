@@ -1,5 +1,5 @@
-title: Alchemy CMS Guides
-description: "Alchemy CMS is an awesome Content Management System with a flexible content storing architecture."
+title: Alchemy CMS v2.0.x
+description: These are the legacy guides for Alchemy CMS v2.0.x
 
 authors:
   Core Team:
@@ -15,7 +15,7 @@ authors:
       description: Marc is the newest member of the Alchemy core team.
 
 index:
-  1.) Start here:
+  Start Here:
     - title: Getting Started
       url: getting_started
       text: Everything you need to know to install and create your first Alchemy CMS project.
@@ -23,9 +23,8 @@ index:
       url: standard_set
       text: Can be used with it's pre-defined set of elements and layout-templates.
 
-  2.) Software architecture:
-    - title: Alchemy´s Architecture
-      text: How is Alchemy CMS working and storing contents
+  Software architecture:
+    - title: Alchemys Architecture
       url: architecture
     - title: Page layouts
       url: page_layouts
@@ -40,7 +39,7 @@ index:
       url: essences
       text: What are essences.
     
-  3.) In depth guides:
+  In depth guides:
     - title: Creating own page layouts
       url: creating_page_layouts
       text: How to create own page layouts.
