@@ -65,7 +65,7 @@ h5. Example of element description with picture gallery editor:
 
 INFO: The view generator takes care of the rest. If you add the picture gallery editor into an existing element you have to insert <code>render_picture_gallery_editor(element)</code> into your elements editor partial.
 
-INFO: The view generator <code>rails g alchemy:elements</code> takes care of the partials. If you add the picture gallery editor to an existing element you have to insert <code>render_picture_gallery_editor(element)</code> into your elements editor partial.
+NOTE: If you want to limit the amount of pictures a user can add to the gallery use the <code>maximum_amount_of_images</code> option on the <code>render_picture_gallery_editor</code> helper.
 
 h5. Code example of element editor partial (<code>_picture_gallery_editor.html.haml</code>)
 
@@ -114,6 +114,22 @@ This code example illustrates the image cropping feature:
 
 Alternatively, if you want to customize the way the gallery pictures are rendered, you can create the plain image tag by yourself and use the Alchemy Picture url helper:
 <code>image_tag show_alchemy_picture_url(image.essence.picture, :size => "102x73", :format => "png")</code>
+
+The view partial may look like this:
+
+<pre>
+<div class="gallery" id="<%= element_dom_id(element) %>"<%= element_preview_code(element) -%>>
+  <div class="image">
+    <%= render_essence_view_by_name(element, 'image') %>
+  </div>
+  <div class="headline">
+    <%= render_essence_view_by_name(element, 'headline') %>
+  </div>
+  <div class="text">
+    <%= render_essence_view_by_name(element, 'text') %>
+  </div>
+</div>
+</pre>
 
 h4. Adding contents dynamically
 
