@@ -27,6 +27,7 @@ Example:
 
 h3. Render a page content
 
-INFO: coming soon.
+The rendering process in alchemy is follows the appropriate process in Rails.
+Please have a look at "Layouts and Rendering in Rails":http://guides.rubyonrails.org/layouts_and_rendering.html for further information.
 
 &nbsp;

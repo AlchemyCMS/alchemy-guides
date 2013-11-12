@@ -4,6 +4,8 @@ Alchemy uses "Dragonfly":http://markevans.github.com/dragonfly/ (a powerful imag
 
 Images are stored as master images in the pictury library. The editor just assigns these master images to content elements you provide. You also set the image rendering bounderies. The max width and height values, or even the size an image should be cropped to. Alchemy even comes with a fancy Javascript based image cropper tool, so that your customer can define the mask to be used.
 
+If you didn't read "Layout and Rendering":http://http://guides.rubyonrails.org/layouts_and_rendering.html yet, please have a look.
+
 endprologue.
 
 h3. Configuration
@@ -18,6 +20,8 @@ h3. Configuration
 INFO: You can always override the output format while rendering your essence with passing <code>{:format => :png}</code> to the <code>render_essence</code> helper.
 
 h5. The default configuration
+
+(in <code>config/alchemy/config.yml </code>)
 
 <pre>
 output_image_jpg_quality: 85

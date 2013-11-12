@@ -51,9 +51,12 @@ In order to use it, you just need to enable the setting in the elements.yml file
 h5. Example of element description with picture gallery editor:
 
 <pre>
-- name: picture_gallery
-  picture_gallery: true
+  - name:: gallery
+    unique: true
+    picture_gallery: true
 </pre>
+
+INFO: The view generator takes care of the rest. If you add the picture gallery editor into an existing element you have to insert <code>render_picture_gallery_editor(element)</code> into your elements editor partial.
 
 INFO: The view generator <code>rails g alchemy:elements</code> takes care of the partials. If you add the picture gallery editor to an existing element you have to insert <code>render_picture_gallery_editor(element)</code> into your elements editor partial.
 
@@ -76,6 +79,22 @@ h5. The following code example shows how to render the element with the picture 
 Alternatively, if you want to customize the way the gallery pictures are rendered, you can create the plain image tag by yourself and use the Alchemy Picture url helper:
 <code>image_tag show_alchemy_picture_url(image.essence.picture, :size => "102x73", :format => "png")</code>
 
+The view partial may look like this:
+
+<pre>
+<div class="gallery" id="<%= element_dom_id(element) %>"<%= element_preview_code(element) -%>>
+  <div class="image">
+    <%= render_essence_view_by_name(element, 'image') %>
+  </div>
+  <div class="headline">
+    <%= render_essence_view_by_name(element, 'headline') %>
+  </div>
+  <div class="text">
+    <%= render_essence_view_by_name(element, 'text') %>
+  </div>
+</div>
+</pre>
+
 h4. Adding contents dynamically
 
 You are able to allow your users to add contents dynamically to the element.
@@ -83,13 +102,19 @@ You are able to allow your users to add contents dynamically to the element.
 You just need to define available contents in the <code>elements.yml</code>.
 If you also want to allow the users to delete these contents you can also define that.
 
-h5. Example of element description with available contents
+It is important to define the dynamic content twice, below <code>contents:</code> and <code>available_contents:</code>
+
+h5. Example
 
 <pre>
 - name: headline
   contents:
   - name: headline
     type: EssenceText
+  - name: big_text
+    type: EssenceRichtext
+    settings:
+      deletable: true
   available_contents:
   - name: big_text
     type: EssenceRichtext
