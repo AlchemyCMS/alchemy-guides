@@ -17,7 +17,7 @@ Page layouts are defined in the <code>config/alchemy/page_layouts.yml</code> fil
 
 h4. How do they work?
 
-When creating a new page the user gets prompted to select a page layout. Depending on its settings (<code>page_layouts.yml</code>) the user has certain elements to manage content with.
+When creating a page the user gets prompted to select a page layout. Depending on that page layouts configuration the user has elements to manage content with.
 
 h4. Rendering
 
@@ -34,7 +34,7 @@ Run <code>rails g alchemy:page_layouts --skip</code> inside you terminal.
 
 h4. Caching
 
-If using the global caching option (defined in <code>config/alchemy/config.yml</code>) which is enabled by default, your page layouts will be cached for fast delivering through Rails action caching.
+If using the caching option (defined in <code>config/alchemy/config.yml</code>), your page layouts will be cached for fast delivering through Rails action caching.
 
 INFO: You can disable caching of certain pages in the <code>page_layouts.yml</code> file by using the <code>cache: false</code> setting.
 

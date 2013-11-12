@@ -1,8 +1,8 @@
 h2. Elements
 
-Elements are customizable parts of your page. An article that contains a headline, a text block and a picture - this is a typical element.
+Elements are customizable parts of your page. An article with headline, text block and a picture is a typically element.
 
-An element mostly contains one or more contents of a specific essence type.
+An element contains one or more contents of a specific essences type.
 There are "essence types":essences.html for every type of data that can be stored in a database.
 
 * Defintion of an element
@@ -14,8 +14,9 @@ endprologue.
 
 h3. Defining elements
 
-Elements get defined in a <code>config/alchemy/elements.yml</code> file.
-If you dont have created this file yet, use the scaffold generator to create it now. It also creates all the other important folders and files for setting up your website with Alchemy:
+Define elements in a <code>config/alchemy/elements.yml</code> file.
+
+Use the scaffold generator to create it:
 
 <shell>
 rails g alchemy:scaffold
@@ -26,7 +27,7 @@ h4. Element settings
 * <code>name</code> <code>String</code> <strong>required</strong><br>
   A unique name of the element. This name is used in the <code>page_layouts.yml</code> file and in the <code>app/views/alchemy/elements</code> view partials. The name itself is "translatable":#translations. The format has to be <strong>lowercase</strong> and seperated words has to be <strong>underscored</strong>.
 * <code>unique</code> <code>Boolean</code><br>
-  (Default: <code>false</code>) Passing <code>true</code> means, that this element can be placed only once on a page.
+  (Default: <code>false</code>) Passing <code>true</code> means, that this element can only be placed once on a page.
 * <code>contents</code> <code>Array</code><br>
   A collection of contents this element contains. A content has to have a <code>name</code> and a <code>type</code>. See "available essences":essences.html you can use.
 
@@ -49,9 +50,10 @@ NOTE: <b>Please ensure to restart the server after editing the elements.yml .</b
 
 h4. Render a picture gallery
 
-Alchemy provides a nice picture gallery editor. It allows to manage large picture galleries very easy by dragging the pictures around.
+Alchemy has a nice picture gallery editor, that makes it easy to manage large picture galleries. It offers a nice drag'n'drop
+editor for the user.
 
-In order to use it, you just need to enable the setting in the elements.yml file for every element that should contain a picture gallery.
+In order to use it, you have to enable it on the elements settings.
 
 h5. Example of element description with picture gallery editor:
 

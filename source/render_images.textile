@@ -91,4 +91,4 @@ You can get the security token from a picture with the <code>security_token</cod
 
 INFO: The <code>render_essence</code> and <code>show_alchemy_picture_params</code> helpers set the security token for you.
 
-&nbsp;
+.

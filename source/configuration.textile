@@ -14,7 +14,7 @@ endprologue.
 
 h3. The configuration file
 
-# encoding: UTF-8
+notextile. # encoding: UTF-8
 #
 # == This is the global Alchemy configuration file
 #
@@ -210,6 +210,7 @@ devise_modules:
   - :timeoutable
   - :recoverable
   - :encryptable # Uncomment this if you are upgrading from an Alchemy version < 2.5.0
+notextile.
 
 Please "have a look into the source code":https://raw.github.com/magiclabs/alchemy_cms/2.7-stable/config/alchemy/config.yml
 The file is pretty well documentated and much more up to date then this guide.
