@@ -1,14 +1,43 @@
-h2. Best Practice: How to create Form
+h2. Best Practice: How to create a form
 
 This guide covers the configuration setup and create process of a regular contact form:
 
 * Setup Alchemy mailer
-* .....
+* Definition of required elements and layout
+* Translation support
 
 
-h3. Mailer Settings
 
-This is the default mailer configuration.
+h3. Conceptual page and content structuring
+
+Imagine visitors got questions about products or services which are presented
+on the website. A contact form is common and conveient way to enable visitors to contact you.
+Following the "Alchemy approach":alchemy_approach.html you should start with identifying the
+required elements.
+
+*We will build the contact form element according to "Contact Template:":http://foundation.zurb.com/page-templates4/contact.html by Foundation Zurb (© ZURB, Inc).*
+
+endprologue.
+
+h3. Concept and structure
+
+In contrast to "Best Practice: Create a Blog Template":best_pratice_create_blog_template.html
+this guide dispenses with create a new page layout. The next steps focus on the element of an contact form. Feel free to create a custom page layout.
+A contact form should provide at least  fields for:
+
+* *name (firstname, lastname)* of the visitor
+* *Email*  for response
+* *message*: concern of the contact request
+
+
+h3. Prerequisites
+
+h4. Mailer Settings
+
+First of all make sure, that the Alchemy mailer is correctly set.
+If a user submit the the form usually the user receives a confirmation mail and
+
+This is the default mailer configuration. Replace the place holder(<code>your.mail@your-domain.com</code>) with your own Email.
 
 <pre>
 mailer:
@@ -42,6 +71,7 @@ INFO: All optional setting should be managable through the content management us
 h3. Creating a contact form element
 
 Describe a new Element with this options inside your <code>elements.yml</code> file:
+(stored in <code>config/alchemy/</code>)
 
 <pre>
 - name: contactform
@@ -72,7 +102,7 @@ INFO: The fields <code>mail_to</code>, <code>mail_from</code>, <code>subject</co
 
 NOTE: The validations are optional, but <strong>highly recommended</strong>.
 
-Create a page layout for your contact page in the <code>page_layouts.yml</code> file:
+Define a page layout for your contact page in the <code>page_layouts.yml</code> file:
 
 <pre>
 - name: contact
@@ -84,13 +114,16 @@ Create a page layout for your contact page in the <code>page_layouts.yml</code> 
 
 INFO: Disabling the page caching is <strong>highly recommended</strong>!
 
+Afterwards create new file <code>_contact.html.erb</code> in <code>app/views/alchemy/page_layouts/</code> and insert the "raw HTML Code":https://gist.github.com/ghaida/5054646/raw/cd669ee59ce65510c52a5acc39c1f5dbb7b9c925/gistfile1.html from the Contact Template by Foundation Zurb.
+Instead of using the sample HTMl, feel free to insert your custom HTML code.
+
 h4. Example contact form
 
-Use the <code>rails g alchemy:elements --skip</code> generator to create the view files.
+Subsequently run the command
+<shell>rails g alchemy:elements --skip</shell>
+to generate the (view and editor) partials.
 
 h5. The contact form view
-
-Open <code>app/views/alchemy/elements/_contactform_view.html.erb</code> in your text editor.
 
 We are using the great <code>simple_form</code> gem in this example.
 If this gem is not already installed, you have to add
@@ -98,6 +131,9 @@ If this gem is not already installed, you have to add
   gem 'simple_form'
 </pre>
 to your Gemfile and afterwards use <shell>bundle </shell> command to install <code>simple_form</code>.
+
+Open <code>app/views/alchemy/elements/_contactform_view.html.erb</code> in your text editor.
+It should look like this:
 
 <pre>
 <%= simple_form_for(@message ||= Alchemy::Message.new) do |form| %>
@@ -107,11 +143,12 @@ to your Gemfile and afterwards use <shell>bundle </shell> command to install <co
   <%= form.input :message, :as => :text %>
   <%= form.hidden_field :contact_form_id, :value => element.id %>
   <%= form.button :submit %>
+  <%- end -%>
 </pre>
 
-NOTE: See the hidden field? This is important, or the messages mailer can't do all the magic for you.
+The helper <code>simple_form_for()</code> is used to generate the form automatically.
 
-If you use different or additional input symbols like 'company' , 'age' etc. make sure to adapt the fields in the mailer configuration (<code>config/alchemy/config.yml</code>).
+NOTE: See the hidden field? This is important, or the messages mailer can't do all the magic for you.
 
 INFO: Please have a look at the "simple form documentation":https://github.com/plataformatec/simple_form#readme for further infos about the various config options.
 
@@ -144,9 +181,9 @@ de:
         lastname: Nachname
 </pre>
 
-INFO: If you like to use same vocabulary in different context:
+*If you like to use same vocabulary in different context:*
 
-e.g in the <code>app/views/alchemy/elements/_contactform_view.html.erb </code>
+e.g in the <code>app/views/alchemy/elements/_contactform_view.html.erb</code>
 
 <pre>
   <%= form.input ... %>
@@ -157,11 +194,19 @@ e.g in the <code>app/views/alchemy/elements/_contactform_view.html.erb </code>
 Your language yml should look like this: (<code>config/locales/de.yml</code>)
 
 <pre>
+de:
+  activemodel:
+    attributes:
+      alchemy/message:
+        firstname: Vorname
+        ...
+        ...
 my_forms:
   contactform:
     sender: Sender
 </pre>
 
-Now you can reuse the label by using the <code> t</code> function while defining label.
+Now you can reuse the label by using the <code>t</code> function while defining
+<code>label</code>.
 
-endprologue.
+

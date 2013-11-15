@@ -1,4 +1,136 @@
-h2. Best Practice: How to create image slider
+h2. Best Practice: How to create an image slider
 
+An image slider is often used on intro pages. This guide covers:
+
+* Enable Javascript
+* Define slider
+
+
+h3. Conceptual page and content structuring
+
+Imagine you would like to welcome your visitors with a slide show with
+impressive pictures.
+
+The following steps use the orbit slider provided by "Foundation Zurb":http://foundation.zurb.com/docs/components/orbit.html .
 
 endprologue.
+
+h3. Prerequisites
+
+First of all you have to enable Javascript in your application.
+Add the following lines to your <code>applicaion.js</code> in
+<code>app/assets/javascript/</code>:
+
+<pre>
+  //= require jquery
+  //= require foundation
+
+  $(document).foundation();
+</pre>
+
+By now Javascript, especially the foundation library is included in your Alchemy application.
+
+h3. Define element
+
+First of all we define the slider element(in <code>config/alchemy/</code>)
+
+<pre>
+  - name: slider
+    unique: true
+    picture_gallery: true
+</pre>
+
+The definition is quite short. We just have to declare <code>picture_gallery: true</code>
+and Alchemy does the rest.
+
+h3. Generate and customize the partials
+
+Run the command
+<shell>rails g alchemy:elements -skipp</shell>
+to generate the (view and editor) partials.
+
+Open the view partial <code>_slider_view.html.erb</code> in <code>app/views/alchemy/elements</code>
+and edit to:
+
+<pre>
+  <div class="orbit-container">
+    <ul data-orbit="" class="orbit-slides-container">
+    <% element.contents.gallery_pictures.each do |image| %>
+      <li>
+        <%= render_essence_view(image, image_size: '1000x400', crop: true) %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+</pre>
+In this view partial we use a loop, in order to iterate above the picture in the gallery.
+We use render_essence_view to render the image (See "documentation":http://rubydoc.info/github/magiclabs/alchemy_cms/Alchemy/EssencesHelper for further information).
+
+# <code>:image_size</code> the preferred image size
+# <code>:crop</code> enables the selection of an image section (in the backend)
+
+We use the <code>div</code>-Container due to the availabe css defintions.
+We already included the CSS definition by Foundation Zurb in "Best Practice Create a Blog Template":best_practice_create_blog_template.html#prerequisites, so please make up for it.
+
+Open the editor partial <code>_slider_edit.html.erb</code> in <code>app/views/alchemy/elements</code>:
+and edit to:
+
+<pre>
+  <%= render_picture_gallery_editor(element, image_size: '1000x400', crop: true) %>
+</pre>
+
+Define a page layout for your contact page in the page_layouts.yml file, e.g.:
+
+<pre>
+  - name: intro
+    elements: [slider, content]
+</pre>
+or add to <code>elements:</code> array of an existing page layout.
+
+and create new page layout file <code>_intro.html.erb</code> in <code>app/views/alchemy/page_layouts</code>.
+
+h3. Embed the slider in your page layout
+
+After defining the 'slider' element you can integrate it in the page layout.
+It might look like this:
+
+<pre>
+  <!-- First Band (Slider) -->
+
+  <div class="row">
+    <div class="large-12 columns">
+    <div id="slider">
+           <%= render_elements only: 'slider' %>
+    </div>
+
+    <hr />
+    </div>
+  </div>
+</pre>
+
+Now you can run
+<shell>rails server</shell>
+
+to start the server.
+
+*Build your slider using the defined element.*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
