@@ -11,7 +11,7 @@ This guide covers the configuration setup and create process of a regular contac
 h3. Conceptual page and content structuring
 
 Imagine visitors got questions about products or services which are presented
-on the website. A contact form is common and conveient way to enable visitors to contact you.
+on the website. A contact form is common and convenient way to enable them to contact you.
 Following the "Alchemy approach":alchemy_approach.html you should start with identifying the
 required elements.
 
@@ -34,7 +34,7 @@ h3. Prerequisites
 
 h4. Mailer Settings
 
-First of all make sure, that the Alchemy mailer is correctly set.
+First of all make sure, that the Alchemy mailer is correctly configured.
 If a user submit the the form usually the user receives a confirmation mail and
 
 This is the default mailer configuration. Replace the place holder(<code>your.mail@your-domain.com</code>) with your own Email.

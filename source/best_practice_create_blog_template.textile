@@ -5,7 +5,7 @@ or extraordinary experiences.
 In this guide you will learn how to:
 
 * Define blog layout and elements
-* Integrate in your existing application
+* Integration in your existing application
 
 h3. Conceptual page and content structuring
 
@@ -31,7 +31,6 @@ We can identify the following page elements:
 
 * *featured block* contains text block with link to favourite blog post
 
-The individual page elements could be considered as an element.
 
 h4. Prerequisites
 
@@ -66,11 +65,11 @@ Hence the necessary prepations are completed.
 h3. Define elements
 
 First of all we define the elements we need in <code>config/alchemy/elements.yml</code>
-The individual page elements(see *1.*) could be considered as an element.
+The individual page elements(see *1. Concept and structure*) could be considered as an element.
 
 h4. Blog title
 
-The blog should have a unique title. The title elements contains a <code>title</code> and a <code>text</code> which represents a description or motto. In both cases we choose an <code>EssenceText</code>, due to the fact that the <code>title</code> and the <code>text</code>will contain simple text.
+The blog should have a unique title. The title element contains a <code>title</code> and a <code>text</code> which represents a description or motto. In both cases we choose an <code>EssenceText</code>, due to the fact that the <code>title</code> and the <code>text</code>will contain simple text.
 
 The <code>default</code> attribut provides the preset value, if the user didn't specify a motto or description( in Alchemy's backend).
 
@@ -91,6 +90,8 @@ h4. Blog post
 A 'blog post' element has a title, date, author, image and text.
 
 The title is represented by <code>blog_post_title</code>. Its just a text, so we took <code>EssenceText</code> as type. Below <code>settings</code> we use <code>linkable: true</code>, because the user should be able to choose a link for the title of the blog post.
+
+The meta data like author and creation date corresponds to 'blog_post_meta'.
 
 The <code>blog_post_intro_text</code> text as well as the main content <code>blog_post_content</code>
 get the type <code>EssenceRichtext</code>, since the user likes to add multiline paragraphs.
@@ -349,7 +350,7 @@ with
 and replace the content of <code><div class="panel"></code>
 with
 <pre>
-  <%=  render_elements only: 'featured' %>
+  <%=  render_elements only: '  featured' %>
 </pre>
 
 Now you can run

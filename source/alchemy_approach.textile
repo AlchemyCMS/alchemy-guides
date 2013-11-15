@@ -24,17 +24,17 @@ h3. Examples
 
 h4. Create Blog template
 
-Websites often contain blog pages. If you like to find out how to create a blog page using Alchemy, visit "Best Practice: Create Blog Template":best_practice_create_blog_template.html
+Websites often contain blog pages. If you like to find out how to create a blog page using Alchemy, visit "Best Practice: Create a Blog Template":best_practice_create_blog_template.html
 
 h4. Create form (contact)
 
 In order to offer your visitors the opportunity to contact you, its quite common to provide a contact form
 instead of just display your email.
-"Best Practice: Create form":best_practice_create_form.html
+"Best Practice: Create a form":best_practice_create_form.html
 
 h4. Create image-slider
 
-Most of the intro pages contain kinds of slider. Visit "Best Practice: Create Image-slider":best_practice_create_image_slider.html for futher information.
+Most of the intro pages contain kinds of slider. Visit "Best Practice: Create an image-slider":best_practice_create_image_slider.html for futher information.
 
 h4. Using the implemented fulltext search
 

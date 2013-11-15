@@ -11,14 +11,14 @@ h3. Conceptual page and content structuring
 Imagine you would like to welcome your visitors with a slide show with
 impressive pictures.
 
-The following steps use the orbit slider provided by "Foundation Zurb":http://foundation.zurb.com/docs/components/orbit.html .
+The following steps use the orbit slider provided by "Foundation Zurb":http://foundation.zurb.com/docs/components/orbit.html (© ZURB, Inc).
 
 endprologue.
 
 h3. Prerequisites
 
 First of all you have to enable Javascript in your application.
-Add the following lines to your <code>applicaion.js</code> in
+Add the following lines to your <code>application.js</code> in
 <code>app/assets/javascript/</code>:
 
 <pre>
@@ -32,7 +32,7 @@ By now Javascript, especially the foundation library is included in your Alchemy
 
 h3. Define element
 
-First of all we define the slider element(in <code>config/alchemy/</code>)
+Afterwards we define the slider element(in <code>config/alchemy/</code>)
 
 <pre>
   - name: slider
@@ -46,7 +46,7 @@ and Alchemy does the rest.
 h3. Generate and customize the partials
 
 Run the command
-<shell>rails g alchemy:elements -skipp</shell>
+<shell>rails g alchemy:elements -skip </shell>
 to generate the (view and editor) partials.
 
 Open the view partial <code>_slider_view.html.erb</code> in <code>app/views/alchemy/elements</code>
@@ -63,8 +63,8 @@ and edit to:
     </ul>
   </div>
 </pre>
-In this view partial we use a loop, in order to iterate above the picture in the gallery.
-We use render_essence_view to render the image (See "documentation":http://rubydoc.info/github/magiclabs/alchemy_cms/Alchemy/EssencesHelper for further information).
+In this view partial we use a loop, in order to iterate through the pictures in the gallery.
+We use <code>render_essence_view</code> to render the image (See "documentation":http://rubydoc.info/github/magiclabs/alchemy_cms/Alchemy/EssencesHelper for further information).
 
 # <code>:image_size</code> the preferred image size
 # <code>:crop</code> enables the selection of an image section (in the backend)
@@ -79,7 +79,7 @@ and edit to:
   <%= render_picture_gallery_editor(element, image_size: '1000x400', crop: true) %>
 </pre>
 
-Define a page layout for your contact page in the page_layouts.yml file, e.g.:
+Define a page layout for your contact page in the page_layouts.yml file, e.g. :
 
 <pre>
   - name: intro
@@ -87,11 +87,11 @@ Define a page layout for your contact page in the page_layouts.yml file, e.g.:
 </pre>
 or add to <code>elements:</code> array of an existing page layout.
 
-and create new page layout file <code>_intro.html.erb</code> in <code>app/views/alchemy/page_layouts</code>.
+Create new page layout file <code>_intro.html.erb</code> in <code>app/views/alchemy/page_layouts</code>. If you are looking forward to rebuild the "Foundation Zurb Orbit Home Template":http://foundation.zurb.com/page-templates4/orbithome.html , just copy the "raw HTML Code":https://gist.github.com/ghaida/5054559/raw/d5b0ce5d509ec152acdb441447bc3b00aef4bdae/gistfile1.html into your <code>_intro.html.erb</code>.
 
 h3. Embed the slider in your page layout
 
-After defining the 'slider' element you can integrate it in the page layout.
+After defining the 'slider' element you can integrate it in the page layout(recently created <code>_intro.html.erb</code>).
 It might look like this:
 
 <pre>
@@ -107,6 +107,7 @@ It might look like this:
     </div>
   </div>
 </pre>
+
 
 Now you can run
 <shell>rails server</shell>
