@@ -22,11 +22,26 @@ Add the following lines to your <code>application.js</code> in
 <code>app/assets/javascript/</code>:
 
 <pre>
-  //= require jquery
-  //= require foundation
+//= require jquery
+//= require foundation
 
-  $(document).foundation();
+$(document).foundation();
 </pre>
+
+Open <code>application.html.erb</code> in <code>app/views/layouts</code> and add the following lines if they don't exist:
+
+<pre>
+<head>
+  ...
+  <%= stylesheet_link_tag 'application' %>
+  ...
+</head>
+<body>
+  ...
+  <%= javascript_include_tag 'application' %>
+  ...
+</body>
+ </pre>
 
 By now Javascript, especially the foundation library is included in your Alchemy application.
 
@@ -35,9 +50,9 @@ h3. Define element
 Afterwards we define the slider element(in <code>config/alchemy/</code>)
 
 <pre>
-  - name: slider
-    unique: true
-    picture_gallery: true
+- name: slider
+  unique: true
+  picture_gallery: true
 </pre>
 
 The definition is quite short. We just have to declare <code>picture_gallery: true</code>
@@ -53,15 +68,15 @@ Open the view partial <code>_slider_view.html.erb</code> in <code>app/views/alch
 and edit to:
 
 <pre>
-  <div class="orbit-container">
-    <ul data-orbit="" class="orbit-slides-container">
-    <% element.contents.gallery_pictures.each do |image| %>
-      <li>
-        <%= render_essence_view(image, image_size: '1000x400', crop: true) %>
-      </li>
-    <% end %>
-    </ul>
-  </div>
+<div class="orbit-container">
+  <ul data-orbit="" class="orbit-slides-container">
+  <% element.contents.gallery_pictures.each do |image| %>
+    <li>
+      <%= render_essence_view(image, image_size: '1000x400', crop: true) %>
+    </li>
+  <% end %>
+  </ul>
+</div>
 </pre>
 In this view partial we use a loop, in order to iterate through the pictures in the gallery.
 We use <code>render_essence_view</code> to render the image (See "documentation":http://rubydoc.info/github/magiclabs/alchemy_cms/Alchemy/EssencesHelper for further information).
@@ -76,14 +91,14 @@ Open the editor partial <code>_slider_edit.html.erb</code> in <code>app/views/al
 and edit to:
 
 <pre>
-  <%= render_picture_gallery_editor(element, image_size: '1000x400', crop: true) %>
+<%= render_picture_gallery_editor(element, image_size: '1000x400', crop: true) %>
 </pre>
 
 Define a page layout for your contact page in the page_layouts.yml file, e.g. :
 
 <pre>
-  - name: intro
-    elements: [slider, content]
+- name: intro
+  elements: [slider, content]
 </pre>
 or add to <code>elements:</code> array of an existing page layout.
 
@@ -95,17 +110,17 @@ After defining the 'slider' element you can integrate it in the page layout(rece
 It might look like this:
 
 <pre>
-  <!-- First Band (Slider) -->
+<!-- First Band (Slider) -->
 
-  <div class="row">
-    <div class="large-12 columns">
-    <div id="slider">
-           <%= render_elements only: 'slider' %>
-    </div>
-
-    <hr />
-    </div>
+<div class="row">
+  <div class="large-12 columns">
+  <div id="slider">
+         <%= render_elements only: 'slider' %>
   </div>
+
+  <hr />
+  </div>
+</div>
 </pre>
 
 

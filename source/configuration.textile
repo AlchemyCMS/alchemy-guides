@@ -4,6 +4,12 @@ Alchemy configuration is done in the <code>config/alchemy/config.yml</code> file
 
 Use <code>rake alchemy:install</code> or <code>rails g alchemy:scaffold</code> to generate it.
 
+This guide covers:
+
+* Configuration file
+* Routing
+
+
 endprologue.
 
 h3. The configuration file
@@ -206,8 +212,24 @@ devise_modules:
   - :encryptable # Uncomment this if you are upgrading from an Alchemy version < 2.5.0
 notextile.
 
-
-
-
 Please "have a look into the source code":https://raw.github.com/magiclabs/alchemy_cms/2.7-stable/config/alchemy/config.yml
 The file is pretty well documentated and much more up to date then this guide.
+
+h3. Routing
+
+During the installation of Alchemy CMS you choosed the mount directory.
+
+If you like to define special routes , open the routes.rb in <code>config/</code>
+and add your routes.
+
+It might look like this:
+<pre>
+root to: redirect('/blog')
+
+mount Alchemy::Engine => '/'
+....
+</pre>
+
+NOTE! Please make sure to add your custom routes above <code>mount Alchemy:Engine => "/"</code>.
+
+For further information about rounting in Rails visit "Rails Guides: Routing":http://guides.rubyonrails.org/routing.html .

@@ -312,7 +312,7 @@ In <code>app/views/alchemy/page_layouts/_blog.html</code> search for (inside 'Na
 and replace with:
 
 <pre>
-  <%= render_elements only: 'blog_title' %>
+<%= render_elements only: 'blog_title' %>
 </pre>
 
 The 'blog_title' set in the backend is now visible in the blog page layout context.
@@ -350,7 +350,7 @@ with
 and replace the content of <code><div class="panel"></code>
 with
 <pre>
-  <%=  render_elements only: '  featured' %>
+<%=  render_elements only: '  featured' %>
 </pre>
 
 Now you can run

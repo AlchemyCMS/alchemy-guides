@@ -1,5 +1,10 @@
 h2. Page layouts
 
+Following this guide you will learn how to:
+
+* Create page layouts
+* Customize page layouts
+
 endprologue.
 
 h3. What are page layouts?

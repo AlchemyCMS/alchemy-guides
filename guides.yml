@@ -63,6 +63,7 @@ index:
     - title: How to create a form
       url: best_practice_create_form
       text: Best practice in creating (contact) form.
+      construction: true
 
     - title: How to create an image slider
       url: best_practice_create_image_slider

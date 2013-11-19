@@ -5,6 +5,11 @@ Elements are customizable parts of your page. An article that contains a headlin
 An element mostly contains one or more contents of a specific essence type.
 There are "essence types":essences.html for every type of data that can be stored in a database.
 
+* Defintion of an element
+* Customization
+* Integration into a page layout
+
+
 endprologue.
 
 h3. Defining elements

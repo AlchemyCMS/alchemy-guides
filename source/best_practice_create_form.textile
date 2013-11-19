@@ -128,7 +128,7 @@ h5. The contact form view
 We are using the great <code>simple_form</code> gem in this example.
 If this gem is not already installed, you have to add
 <pre>
-  gem 'simple_form'
+gem 'simple_form'
 </pre>
 to your Gemfile and afterwards use <shell>bundle </shell> command to install <code>simple_form</code>.
 
@@ -186,9 +186,9 @@ de:
 e.g in the <code>app/views/alchemy/elements/_contactform_view.html.erb</code>
 
 <pre>
-  <%= form.input ... %>
-  <%= form.input :firstname , label: t(:sender, scope: 'my_forms.contactform') %>
-  <%= form.input ...  %>
+<%= form.input ... %>
+<%= form.input :firstname , label: t(:sender, scope: 'my_forms.contactform') %>
+<%= form.input ...  %>
 </pre>
 
 Your language yml should look like this: (<code>config/locales/de.yml</code>)

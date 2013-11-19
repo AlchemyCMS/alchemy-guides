@@ -1,5 +1,10 @@
 h2. Creating own Essences
 
+After reading this guide, you should be familiar with:
+
+* Convert Rails model to Alchemy Essence
+* Create the views
+
 endprologue.
 
 
@@ -46,12 +51,12 @@ h4. Editor
 
 <pre>
 # app/views/alchemy/essences/_essence_product_editor.html.erb
-<%= select_tag content.form_field_name, 
-    options_for_select(Product.all.map { 
-      |p| [p.name, p.id] }, content.ingredient), 
+<%= select_tag content.form_field_name,
+    options_for_select(Product.all.map {
+      |p| [p.name, p.id] }, content.ingredient),
       :id => content.form_field_id %>
 </pre>
 
-Now you can use your new essence in any element you want. Connect it like shown in the "Create your own Element" guide. 
+Now you can use your new essence in any element you want. Connect it like shown in the "Create your own Element" guide.
 Don't forget to migrate your database!
 &nbsp;
