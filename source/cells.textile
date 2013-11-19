@@ -1,4 +1,8 @@
 h2. Cells
+This guide give you general information about cell.
+
+* Defintion of cells
+* Rendering
 
 This guide give you general information about cell, including:
 

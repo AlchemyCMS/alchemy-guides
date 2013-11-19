@@ -7,6 +7,9 @@ Images are stored as master images in the pictury library. The editor just assig
 * Configuration
 * Rendering and Caching
 
+
+If you didn't read "Layout and Rendering":http://http://guides.rubyonrails.org/layouts_and_rendering.html yet, please have a look.
+
 If you didn't read "Layout and Rendering":http://guides.rubyonrails.org/layouts_and_rendering.html yet, please have a look.
 
 endprologue.

@@ -2,7 +2,7 @@ h2. Page layouts
 
 Following this guide you will learn how to:
 
-* Definition of page layouts
+* Create page layouts
 * Customize page layouts
 
 endprologue.
