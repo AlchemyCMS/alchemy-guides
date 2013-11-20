@@ -14,7 +14,7 @@ endprologue.
 
 h3. The configuration file
 
-notextile. # encoding: UTF-8
+# encoding: UTF-8
 #
 # == This is the global Alchemy configuration file
 #
@@ -210,7 +210,6 @@ devise_modules:
   - :timeoutable
   - :recoverable
   - :encryptable # Uncomment this if you are upgrading from an Alchemy version < 2.5.0
-notextile.
 
 Please "have a look into the source code":https://raw.github.com/magiclabs/alchemy_cms/2.7-stable/config/alchemy/config.yml
 The file is pretty well documentated and much more up to date then this guide.
@@ -222,14 +221,15 @@ During the installation of Alchemy CMS you choosed the mount directory.
 If you like to define special routes , open the routes.rb in <code>config/</code>
 and add your routes.
 
-It might look like this:
+It might look like this,
+e.g. sets the root path to <code>/blog</code>:
+
 <pre>
 root to: redirect('/blog')
-
 mount Alchemy::Engine => '/'
-....
+...
 </pre>
 
-NOTE! Please make sure to add your custom routes above <code>mount Alchemy:Engine => "/"</code>.
+NOTE! Please make sure to add your custom routes above <code>mount Alchemy:Engine => "/"</code>, otherwise they won't be used.
 
 For further information about rounting in Rails visit "Rails Guides: Routing":http://guides.rubyonrails.org/routing.html .

@@ -26,6 +26,7 @@ element's view partials.
 <pre>
 <%= render_essence_view_by_type(element, "EssenceText", 1, {:plain_text =>  true})  %>
 </pre>
+
 You can think of partials as customizable, renderable code snippets which are used for the views in the backend and in the frontend(the partials are stored in <code>app/views/alchemy/elements</code>). The "Elements chapter":elements.html will cover partials in more detail.
 
 h3. EssenceText
@@ -222,10 +223,6 @@ Use this to store a <code>DateTime</code> value. Renders a datepicker in the edi
 The view output is passed through Rails' I18n Library, so it is fully localizable.
 
 
-h4. Settings
-
-No available settings.
-
 h4. Options
 
 <code>:date_format</code> <code>String</code><br>
@@ -235,11 +232,7 @@ h4. Output
 
 Depending on the <code>:date_format</code>:
 
-
-<pre>
-</pre>
-
-
+INFO: Under construction
 
 h3. EssenceHtml
 
@@ -248,10 +241,6 @@ Useful to store HTML code (i.e. a embed, or tracking code).
 The view renders the raw, not sanitized or escaped output.
 
 <strong>So be careful!</strong>
-
-h4. Settings
-
-No settings available.
 
 h4. Options
 
@@ -271,22 +260,24 @@ The output might look like this:
 h3. EssenceBoolean
 
 Stores a Boolean value in the database. Renders a checkbox in the editor partial.
+Depending on the status of the checkbox, the view output may look different.
 
 h3. EssenceSelect
 
 Renders a select box in the editor partial and stores the value as <code>String</code>.
 
-Useful for letting your user select from a limited set of choices.
+Useful for letting your user select from a limited set of choices. For example the user can select the background color on an element.
+
+h4. Options
+
+* <code>:select_values</code> <code>Hash</code><br>
+  Sets the values in the drop down list.
 
 NOTE: Pretty handy together with the <code>page_selector</code> "helper":http://rubydoc.info/github/magiclabs/alchemy_cms/Alchemy/Admin/EssencesHelper#page_selector-instance_method.
 
 h3. EssenceLink
 
 Stores a url in the database. Useful for linking things, where the user should not set the linked value itself. (Like in the EssenceText with <code>linkable: true</code> option)
-
-h4. Settings
-
-No settings available.
 
 h4. Options
 
