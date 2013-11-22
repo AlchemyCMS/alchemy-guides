@@ -262,6 +262,21 @@ h3. EssenceBoolean
 Stores a Boolean value in the database. Renders a checkbox in the editor partial.
 Depending on the status of the checkbox, the view output may look different.
 
+h4. Options
+
+* <code>:default_value</code> <code>Boolean</code><br>
+  Sets the default value. If true, checkbox will be checked by default.
+
+h4. Example
+
+The content of the editor partial (in <code>app/views/alchemy/elements</code>):
+<pre>
+<%= element_editor_for(element) do |el| -%>
+  <%= el.edit :myboolean, default_value: false %>
+<%- end -%>
+</pre>
+
+
 h3. EssenceSelect
 
 Renders a select box in the editor partial and stores the value as <code>String</code>.
@@ -272,6 +287,14 @@ h4. Options
 
 * <code>:select_values</code> <code>Hash</code><br>
   Sets the values in the drop down list.
+
+h4. Example
+
+If you copy the following lines to your edit partial of the element, containing an <code>EssenceBoolean</code>, the user will be able to select from the set of existing pages on your website.
+<pre>
+<%= page_selector(element, "myselect") %>
+</pre>
+
 
 NOTE: Pretty handy together with the <code>page_selector</code> "helper":http://rubydoc.info/github/magiclabs/alchemy_cms/Alchemy/Admin/EssencesHelper#page_selector-instance_method.
 
