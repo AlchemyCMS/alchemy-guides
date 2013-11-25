@@ -270,6 +270,7 @@ h4. Options
 h4. Example
 
 The content of the editor partial (in <code>app/views/alchemy/elements</code>):
+
 <pre>
 <%= element_editor_for(element) do |el| -%>
   <%= el.edit :myboolean, default_value: false %>
@@ -291,6 +292,7 @@ h4. Options
 h4. Example
 
 If you copy the following lines to your edit partial of the element, containing an <code>EssenceBoolean</code>, the user will be able to select from the set of existing pages on your website.
+
 <pre>
 <%= page_selector(element, "myselect") %>
 </pre>
