@@ -38,13 +38,13 @@ h3. What is Alchemy CMS?
 Alchemy CMS is a mayor, full featured Content Management System (CMS).
 It comes with an extreme flexible "content storing architecture":architecture.html#storing-architecture and a gorgeous user interface.
 
-Alchemy CMS is shipped with a production ready website that can be used “out of the box”, 
+Alchemy CMS is shipped with a production ready website that can be used “out of the box”,
 but it is mostly used for building individual web-applications that are rich in functionality.
 
-The name is program: Alchemy CMS is a kind of chemical construction kit for developers that 
+The name is program: Alchemy CMS is a kind of chemical construction kit for developers that
 want to build professional web-applications in a very short time.
 
-Also content managers are enthusiastic about Alchemy CMS because of its clear and powerful 
+Also content managers are enthusiastic about Alchemy CMS because of its clear and powerful
 user interface that is very easy to use and intuitive to learn.
 
 
@@ -85,7 +85,7 @@ If you already have an existing Rails application, you can require the Alchemy C
 Just add this line to your Gemfile.
 
 <pre>
-gem 'alchemy_cms', '~>2.1'
+gem 'alchemy_cms', '~> 2.7.1'
 </pre>
 
 Since Alchemy CMS is a mountable engine, you need to define the mountpoint in your <code>config/routes.rb</code> file.
