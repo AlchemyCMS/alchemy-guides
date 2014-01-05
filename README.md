@@ -1,14 +1,14 @@
 The Alchemy CMS Guidelines
 ==========================
 
-To contribute to the guidelines please fork this project and send pull requests.
+These Alchemy guides cover Alchemy CMS v.2.7
 
-You will need the guides gem to preview the guides on your local machine.
+The guides are created with the [guides](https://github.com/wycats/guides) gem and are written in [textile](http://redcloth.org/textile) markup.
 
-`gem install guides`
+## Contributing
 
-Or use bundler to install it
-
-`bundle install`
-
-The guides are written in [textile](http://redcloth.org/textile) markup.
+1. Fork it
+2. Create a branch (`git checkout -b my-new-guide`)
+3. Commit your changes (`git commit -am 'Add new guide for elements'`)
+4. Push to the branch (`git push origin my-new-guide`)
+5. Create new Pull Request
