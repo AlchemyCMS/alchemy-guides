@@ -45,7 +45,7 @@ class Ability
 
   def initialize(user)
     can :manage, YourResource
-    can :manage, :your_resource
+    can :manage, :admin_your_resource
   end
 
 end
