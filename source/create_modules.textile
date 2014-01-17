@@ -44,8 +44,10 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :manage, YourResource
-    can :manage, :admin_your_resource
+    if user.is_admin?
+      can :manage, YourResource
+      can :manage, :admin_your_resource
+    end
   end
 
 end
