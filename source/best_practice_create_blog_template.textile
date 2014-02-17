@@ -140,7 +140,7 @@ In the backend the user should be able to add categories easily and dynamically.
   - name: category
     type: EssenceText
     settings:
-      deleteable: true
+      deletable: true
       linkable: true
 </pre>
 
@@ -298,7 +298,7 @@ Finally you have to integrate your elements into the page layout.
 
 h4. Create new page layout view
 
-Create a new file called '_blog.html.erb' in <code>app/views/alchemy/page_layouts</code>
+Create a new file called <code>_blog.html.erb</code> in <code>app/views/alchemy/page_layouts</code>
 and copy the plain html code from "Foundation Zurb Blog Template Raw":http://gist.github.com/ghaida/5054379/raw/f080e139a4e25c4548b265e7229cd6dbe09bff92/gistfile1.html .
 
 h4. Edit blog page layout view
@@ -315,7 +315,7 @@ and replace with:
 <%= render_elements only: 'blog_title' %>
 </pre>
 
-The 'blog_title' set in the backend is now visible in the blog page layout context.
+The <strong>blog_title</strong> set in the backend is now visible in the blog page layout context.
 
 Inside the commented 'Main Blog Content' replace the whole content of
 <code><div class="large-9 columns" role="content"></code>
@@ -325,7 +325,7 @@ with
 <%= render_elements only: 'blog_post' %>
 </pre>
 
-to embed the 'blog_post' elements into the page layout view.
+to embed the <strong>blog_post</strong> elements into the page layout view.
 
 Inside 'Sidebar' comment replace
 
@@ -350,7 +350,7 @@ with
 and replace the content of <code><div class="panel"></code>
 with
 <pre>
-<%=  render_elements only: '  featured' %>
+<%=  render_elements only: 'featured' %>
 </pre>
 
 Now you can run

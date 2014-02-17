@@ -21,7 +21,7 @@ endprologue.
 
 h3. Concept and structure
 
-In contrast to "Best Practice: Create a Blog Template":best_pratice_create_blog_template.html
+In contrast to "Best Practice: Create a Blog Template":best_practice_create_blog_template.html
 this guide dispenses with create a new page layout. The next steps focus on the element of an contact form. Feel free to create a custom page layout.
 A contact form should provide at least  fields for:
 

@@ -87,8 +87,7 @@ We use <code>render_essence_view</code> to render the image (See "documentation"
 We use the <code>div</code>-Container due to the availabe css defintions.
 We already included the CSS definition by Foundation Zurb in "Best Practice Create a Blog Template":best_practice_create_blog_template.html#prerequisites, so please make up for it.
 
-Open the editor partial <code>_slider_edit.html.erb</code> in <code>app/views/alchemy/elements</code>:
-and edit to:
+Open the editor partial <code>_slider_edit.html.erb</code> in <code>app/views/alchemy/elements</code> and edit to:
 
 <pre>
 <%= render_picture_gallery_editor(element, image_size: '1000x400', crop: true) %>
@@ -102,7 +101,7 @@ Define a page layout for your contact page in the page_layouts.yml file, e.g. :
 </pre>
 or add to <code>elements:</code> array of an existing page layout.
 
-Create new page layout file <code>_intro.html.erb</code> in <code>app/views/alchemy/page_layouts</code>. If you are looking forward to rebuild the "Foundation Zurb Orbit Home Template":http://foundation.zurb.com/page-templates4/orbithome.html , just copy the "raw HTML Code":https://gist.github.com/ghaida/5054559/raw/d5b0ce5d509ec152acdb441447bc3b00aef4bdae/gistfile1.html into your <code>_intro.html.erb</code>.
+Create a new page layout file <code>_intro.html.erb</code> in <code>app/views/alchemy/page_layouts</code>. If you are looking forward to rebuild the "Foundation Zurb Orbit Home Template":http://foundation.zurb.com/page-templates4/orbithome.html , just copy the "raw HTML Code":https://gist.github.com/ghaida/5054559/raw/d5b0ce5d509ec152acdb441447bc3b00aef4bdae/gistfile1.html into your <code>_intro.html.erb</code>.
 
 h3. Embed the slider in your page layout
 

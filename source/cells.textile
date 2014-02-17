@@ -1,5 +1,6 @@
 h2. Cells
-This guide give you general information about cell.
+
+This guide give you general information about cell, including:
 
 * Defintion of cells
 * Rendering
