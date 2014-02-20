@@ -1,6 +1,6 @@
 h2. Elements
 
-Elements are customizable parts of your page. An article with headline, text block and a picture is a typically element.
+Elements are customizable parts of your page. An article with headline, text block and a picture is an typical element.
 
 An element contains one or more contents of a specific essences type.
 There are "essence types":essences.html for every type of data that can be stored in a database.
@@ -53,7 +53,7 @@ h4. Render a picture gallery
 Alchemy has a nice picture gallery editor, that makes it easy to manage large picture galleries. It offers a nice drag'n'drop
 editor for the user.
 
-In order to use it, you have to enable it on the elements settings.
+In order to use it, you just need to enable the setting in the <code>elements.yml</code> file for every element that should contain a picture gallery.
 
 h5. Example of element description with picture gallery editor:
 
@@ -67,7 +67,7 @@ INFO: The view generator takes care of the rest. If you add the picture gallery 
 
 INFO: The view generator <code>rails g alchemy:elements</code> takes care of the partials. If you add the picture gallery editor to an existing element you have to insert <code>render_picture_gallery_editor(element)</code> into your elements editor partial.
 
-h5. Code example of element editor partial (picture_gallery_editor.html.haml)
+h5. Code example of element editor partial (<code>_picture_gallery_editor.html.haml</code>)
 
 <pre>
 = render_picture_gallery_editor(element, :max_images => nil, image_size: "346x246", crop => true, fixed_ratio: true)
@@ -75,7 +75,7 @@ h5. Code example of element editor partial (picture_gallery_editor.html.haml)
 
 NOTE: You can pass optional settings to the helper: The <code>max_images</code> option limits the amount of pictures a user can add to the gallery. To enable the image cropping feature for the user you need to pass true to the <code>crop</code> option.
 
-h5. The following code example shows how to render the element with the picture gallery (picture_gallery_view.html.haml):
+h5. The following code example shows how to render the element with the picture gallery (<code>_picture_gallery_view.html.haml</code>):
 
 <pre>
 = element_view_for(element, :id => 'gallery') do |el|
@@ -101,6 +101,19 @@ The view partial may look like this:
   </div>
 </div>
 </pre>
+
+NOTE: You can pass optional settings to the helper: The <code>max_images</code> option limits the amount of pictures a user can add to the gallery. To enable the image cropping feature for the user you need to pass true to the <code>crop</code> option.
+
+This code example illustrates the image cropping feature:
+
+<pre>
+= element_view_for(element, :id => 'gallery') do |el|
+  - element.contents.gallery_pictures.each do |image|
+    = render_essence_view(image, :image_size => "346x246", :crop => true)
+</pre>
+
+Alternatively, if you want to customize the way the gallery pictures are rendered, you can create the plain image tag by yourself and use the Alchemy Picture url helper:
+<code>image_tag show_alchemy_picture_url(image.essence.picture, :size => "102x73", :format => "png")</code>
 
 h4. Adding contents dynamically
 
@@ -173,7 +186,7 @@ This renders a simple list of tags.
 
 h4. Deactivate indexing (Ferret search)
 
-Contents of type EssenceText and EssenceRichtext can be excluded from being indexed by the Ferret search engine.
+Contents of type <code>EssenceText</code> and <code>EssenceRichtext</code> can be excluded from being indexed by the Ferret search engine.
 
 h5. Example:
 
