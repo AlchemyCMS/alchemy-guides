@@ -2,18 +2,17 @@ h2. Upgrading Alchemy CMS
 
 This guide describes how to upgrade Alchemy CMS from an older Alchemy version.
 
-* Upgrade from prior version
 * Update to latest version
+* Upgrade from prior version
 
 endprologue.
 
-Since Alchemy is active maintained and continously enhanced, there will be need to upgrade in order to benefit from
+Since Alchemy is active maintained and continuously enhanced, there will be need to upgrade in order to benefit from
 new feature and fixed issues.
 <p><strong>In general, no content will be touched or removed when upgrading.
 But nonetheless you have to consider some characteristics while upgrading.</strong></p>
 
-The following sections will give you further information for the upgrade process from a specific version to
-current version.
+The following sections will give you further information of the upgrade process in Alchemy CMS from a specific version to more current versions.
 
 h3. Upgrade to latest version
 
@@ -49,7 +48,7 @@ Finally, run the following command to finish the upgrade process:
 bundle exec rake alchemy:upgrade
 </shell>
 
-NOTE: It might be necessary to run <code>bundle install</code>.
+<br />
 
 h5. Additional information
 
@@ -68,7 +67,7 @@ This section assumes that your installed Alchemy App has version <strong>v2.5</s
 
 <pre>
 ...
-gem 'alchemy_cms', :github => 'magiclabs/alchemy_cms', :branch => '2.6-stable'
+gem 'alchemy_cms', :github => 'magiclabs/alchemy_cms', :branch => '2.5-stable'
 ...
 </pre>
 
@@ -223,7 +222,7 @@ Run the commands:
 rails g migration remove_alchemy_richmedia_essences
 </shell>
 
-Now open the automatically created migration file (<code>db/migrate/timestamp_remove_alchemy_richmedia_essences.rb)</code> and edit to:
+The migration file, may look like this:
 
 <pre>
 class RemoveAlchemyRichmediaEssences < ActiveRecord::Migration
@@ -269,32 +268,61 @@ bundle update alchemy_cms
 to update Alchemy by using the recent version defined in the <code>Gemfile</code>.
 
 Finally, run the following command to finish the upgrade process:
->>>>>>> 47be9df... Updates 'Upgrading' chapter and structural adoptions
 
 <shell>
-gem install alchemy_cms
+bundle exec rake alchemy:upgrade
 </shell>
-to update Alchemy by using the recent version defined in the <code>Gemfile</code>.
 
-INFO: If you're updating a project from version < 2.5, please make sure to install the gem <code>devise-encryptable</code>. Add to your Gemfile:
+h5. Additional information
+
+<strong>Update EssencePicture ressources</strong>
+
+Since version <strong>v2.3</strong> it is possible to use both <code>EssencePicture</code> and <strong>picture gallery</strong> in
+an element. As a result the database needs an update and you have to adopt the <code>elements.yml</code>.
+
+Add to <code>db/seeds.rb</code> in <code>module Alchemy</code> block:
+
 <pre>
-gem 'devise-encryptable'
+Element.named(["article", "bild"]).each do |element|
+  element.contents.essence_pictures.each do |content|
+    content.update_column(:name, "image")
+  end
+end
+
+Element.named(["gallery1", "gallery2"]).each do |element|
+  element.contents.essence_pictures.each_with_index do |content, i|
+    content.update_column(:name, "essence_picture_#{i+1}")
+  end
+end
 </pre>
 
-Finally, run the following command to finish the upgrade process:
+<strong>Important:</strong>
+* for each element that should contain a single picture, add the name of the element to the array in the first iteration
+* for each element that should contain a picture gallery, add the name of the element to the array in the second iteration
+
+INFO: If an element uses a different name than <code>"image"</code>, append an additional iteration exclusivly for this element.
+
+Update the database:
+
+<shell>bundle exec rake db:seed</shell>
+
+Now you can edit the <code>config/alchemy/elements.yml</code>:
+
+* <strong>for elements which should contain an single picture</strong>
 
 <pre>
-...
-gem 'alchemy_cms', :github => 'magiclabs/alchemy_cms', :branch => '2.6-stable'
-...
+- name: article
+  contents:
+  - name: image
+    type: EssencePicture
 </pre>
 
-Run in terminal:
+* <strong>for elements with a picture gallery</strong>
 
-<shell>
-bundle update alchemy_cms
-</shell>
-to update Alchemy by using the recent version defined in the <code>Gemfile</code>.
+<pre>
+- name: gallery
+  picture_gallery: true
+</pre>
 
 NOTE: The name of the <code>contents</code> attribute depends on the name you set in the <code>seeds.rb</code>.
 
@@ -318,7 +346,7 @@ Therefore add this task to <code>deploy.rb</code>.
 
 <br />
 
-h4. Upgrade from version 2.1 to 2.2
+h4. Upgrade from  2.1 to version 2.2
 
 This section assumes that your installed Alchemy App has version <strong>v2.1</strong> .
 
@@ -351,25 +379,20 @@ end
 Run in terminal:
 
 <shell>
-bundle exec rake alchemy:upgrade
+bundle update rails alchemy_cms
 </shell>
-
-h3. Upgrade from version 2.4 to 2.5
-
-This section assumes that your installed Alchemy App has version 2.4 .
-
-<pre>
-...
-gem 'alchemy_cms', :github => 'magiclabs/alchemy_cms', :branch => '2.5-stable'
-...
-</pre>
-
-Run in terminal:
+to initiate the update.
+Update rails with the following command:
 
 <shell>
-bundle update alchemy_cms
+bundle exec rake rails:update
 </shell>
-to update Alchemy by using the recent version defined in the <code>Gemfile</code>.
+
+During the upgrade task of rails, choose the option to overwrite all files, except <code>config/routes.rb</code>.
+Overwriting <code>config/enviroments/production.rb</code> should be <strong>handled with care</strong>.
+
+Custom stylesheets (CSS) have to be registered for precompilation.
+Now you should edit <code>config/application.rb</code> in order to match the <code>default_locale</code> and <code>time_zone</code>.
 
 Finally, run the following command to finish the upgrade process:
 
@@ -377,151 +400,66 @@ Finally, run the following command to finish the upgrade process:
 bundle exec rake alchemy:upgrade
 </shell>
 
-h4. Additional information
+h5. Additional information
 
-<strong>Authlogic has been replaced by Devise</strong>
+The navigation renderer received the class <code>navigation</code> and appends the level of the item as an additional class.
 
-We changed the authentication provider from <code>Authlogic</code> to <code>Devise</code>.
-<p>Run (in terminal):</p>
-
-<shell>
-rails g alchemy:devise
-</shell>
-
-And alter the encryptor to authlogic_sha512 and the stretches value from 10 to 20:
+The css selector before:
 
 <pre>
-# config/initializers/devise.rb
-...
-config.stretches = Rails.env.test? ? 1 : 20
-config.encryptor = :authlogic_sha512
-...
+ul.navigation_level_1
 </pre>
 
-Add the encryptable module to your <code>config.yml</code>
+and after
 
 <pre>
-# config/alchemy/config.yml
-devise_modules:
-  - :database_authenticatable
-  - :trackable
-  - :validatable
-  - :timeoutable
-  - :recoverable
-  - :encryptable
+ul.navigation.level_1
 </pre>
 
-<strong>Translation via <code>t</code> method:</strong>
+The <strong>translation of the mailer</strong> has been moved to the scope of Alchemy.
+Consequently you might have to adopt your locale files (<code>config/locales</code>):
 
-If you use the <code>t</code> method to translate alchemy scoped keys, then you have to use the <code>_t</code> method from now on.
-The method has been changed, in order to avoid conflicts with the <code>t</code> provided by Rails.
-
-<strong>Standard Set</strong>
-
-If your website is based on the <code>standard-set</code> of Alchemy, make sure to add the gem: <code>alchemy-demo_kit</code> to your
-Gemfile.
-
-h3. Upgrade from version 2.3 to 2.4
-
-This section assumes that your installed Alchemy App has version 2.3 .
+If your locale file (.yml) look like this:
 
 <pre>
-...
-gem 'alchemy_cms', :github => 'magiclabs/alchemy_cms', :branch => '2.6-stable'
-...
+alchemy:
+  contactform:
+    validations:
+      enter_mail: 'Please enter your email adress'
+      enter_name: 'Please entr your name'
+      enter_street: 'Please enter the name of the street'
+      enter_zipcode: 'Please enter your postal code'
+      enter_city: 'Please enter your enter_city'
 </pre>
 
-Run in terminal:
-
-<shell>
-bundle update alchemy_cms
-</shell>
-to update Alchemy by using the recent version defined in the <code>Gemfile</code>.
-
-Finally, run the following command to finish the upgrade process:
-
-<shell>
-bundle exec rake alchemy:upgrade
-</shell>
-
-h4. Additional information
-
-<strong>Application Layout</strong>
-
-The layout file <code>pages.html.erb</code> has been removed.
-Therefore you just have to rename and move the file from <code>app/views/layouts/alchemy/pages.html.erb</code>
-<p>to
-<code>app/views/layouts/application.html.erb</code>.</p>
-
-<strong>DDOS protection while rendering images</strong>
-
-A new DDOS protection for images has been introduced in version 2.4.
-If you are already using <code>render_essence_view_*</code> helper, nothing has to be changed.
-Otherwise, e.g. in case of manually created URLs for images (by JS picture galleries, ...), the security token is required.
-
-If the code look like this (at the moment):
+you can easily edit it to:
 
 <pre>
-<%= link_to alchemy.show_picture_path(:id => content.essence.picture.id, :name => content.essence.picture.urlname, :format => :png), :class => 'zoom', :title => content.essence.caption do %>
-  <%= render_essence_view(content, :image_size => "363x397") %>
-<% end %>
+activemodel:
+  errors:
+    models:
+      alchemy/message:
+        attributes:
+          lastname:
+            blank: '^Bitte geben Sie Ihren Namen an'
+          email:
+            blank: '^Bitte geben Sie Ihre E-Mail-Adresse an'
+          strasse:
+            blank: '^Bitte geben Sie Ihre Adresse an'
+          plz:
+            blank: '^Bitte geben Sie Ihre Postleitzahl an'
+          ort:
+            blank: '^Bitte geben Sie Ihren Ort an'
 </pre>
 
-it can be replaced by the following:
-
-<pre>
-<%= link_to show_alchemy_picture_path(content.essence.picture, :format => :png), :class => 'zoom', :title => content.essence.caption do %>
-  <%= render_essence_view(content, :image_size => "363x397") %>
-<% end %>
-</pre>
-
-Instead of using the <code>show_alchemy_picture_path</code>helper, you can get the security token with <code>security_token({image_size: '363x397'})</code> from the picture object. Assign the token to the key <code>sh:</code>.
-
-<strong>Richmedia Essences</strong>
-
-The richmedia essences(video, audio, flash) has been removed from the core and extracted into a seperate gem.
-If you project uses some of these essences, add the <code>alchemy-richmedia-essences</code> to your Gemfile.
-
-Usually, if your project does not contain the mentioned types of esssences you can remove the correspond tables from the database.
-
-Run the commands:
-<shell>
-rails g migration remove_alchemy_richmedia_essences
-</shell>
-
-The migration file, may look like this:
-
-<pre>
-class RemoveAlchemyRichmediaEssences < ActiveRecord::Migration
-  def up
-    drop_table :alchemy_essence_audios
-    drop_table :alchemy_essence_flashes
-    drop_table :alchemy_essence_videos
-  end
-
-  def down
-    raise IrreversibleMigration
-  end
-end
-</pre>
-
-and finish migration:
-
-<shell>
-bundle exec rake db:migrate
-</shell>
-
-<strong>SSL obligation</strong>
-
-We recommend you to enable the SSL option for the backend, supposing you've got an SSL certificate.
+<br />
 
 h3. F.A.Q.
 
-<p><strong>GemNotFound</strong></p>
-If you encounter the error <code>GemNotFound: Could not find....</code>, please make sure that all required gems are installed.
-<p>Run</p>
+* <p><strong>GemNotFound</strong></p>
+If you encounter the error <code>GemNotFound: Could not find....</code>, please make sure that all required gems are installed. Run
 <shell>bundle install</shell>
-to install missing gems.
+p((. to install missing gems.
 
 
 
