@@ -27,25 +27,27 @@ element's view partials.
 <%= render_essence_view_by_type(element, "EssenceText", 1, {:plain_text =>  true})  %>
 </pre>
 
-You can think of partials as customizable, renderable code snippets which are used for the views in the backend and in the frontend(the partials are stored in <code>app/views/alchemy/elements</code>). The "Elements chapter":elements.html will cover partials in more detail.
+You can think of partials as customizable, renderable code snippets which are used for the views in the backend and in the frontend (the partials are stored in <code>app/views/alchemy/elements</code>). The "Elements chapter":elements.html will cover partials in more detail.
 
-h3. EssenceText
+h3. Essence types
+
+h4. EssenceText
 
 Stores a <code>String</code> (max. 255 Chars.).
 
 Use this for a headline, or a product name. The editor is renderd as a single lined input field. The view output will be sanitized and HTML escaped. So it's XSS save.
 
-h4. Settings
+h5. Settings
 
 * <code>linkable</code> <code>Boolean</code><br>
   If set to <code>true</code>, the user can link that essence.
 
-h4. Options
+h5. Options
 
 * <code>:disable_link</code> <code>Boolean</code><br>
   If set to <code>true</code>, the link won't be visible even though the user linked that essence.
 
-h4. Example
+h5. Example
 
 In <code>elements.yml</code>
 
@@ -67,7 +69,7 @@ in the corresponding view partial <code>_button_view.html.erb</code>:
 Although the user can set a link while creating the element in a page context in the backend, the link won't be visible due to *option* <code>:disable_link</code>.
 
 
-h4. Output
+h5. Output
 
 Alchemy will render HTML output like this, if <code>linkable: true</code>(setting) and <code>disable_link: false</code>(option):
 
@@ -81,24 +83,26 @@ Otherwise Alchemy will render:
 <p>YourText</p>
 </pre>
 
-h3. EssenceRichtext
+<br />
+
+h4. EssenceRichtext
 
 Used to store long text.
 
 The editor is rendered as a textarea with embedded TinyMCE Editor.
 
-h4. Settings
+h5. Settings
 
 You can customize the TinyMCE editor of a single element instance.
 
 * <code>tinymce</code>
 
-h4. Options
+h5. Options
 
 * <code>:plain_text</code> <code>Boolean</code><br>
   If set to <code>true</code> Alchemy will strip HTML from the text output.
 
-h4. Example
+h5. Example
 
 <pre>
 - name: text
@@ -112,7 +116,7 @@ h4. Example
 
 NOTE: See the "TinyMCE customization guide":customize_tinymce.html for all available options.
 
-h4. Output
+h5. Output
 
 <pre>
 <div class="richtext_text" id="richtext_text_id">
@@ -122,20 +126,21 @@ h4. Output
 </div>
 </pre>
 
+<br />
 
-h3. EssencePicture
+h4. EssencePicture
 
 Used to store references to pictures the user assigned through the library.
 The editor is rendered as a picture editor with a lot of options (i.e. image cropper).
 
 The view renders the assigned picture, resizes it, crops it and caches the result.
 
-h4. Settings
+h5. Settings
 
 * <code>linkable</code> <code>Boolean</code><br>
   If set to <code>true</code>, the user can link that essence.
 
-h4. Options
+h5. Options
 
 * <code>:image_size</code> <code>'640x800'</code><br>
   Sets the maximum size of the image.
@@ -150,8 +155,7 @@ h4. Options
   If set to <code>false</code>, the caption won't be rendered even though the user defines a caption.
 
 
-
-h4. Example
+h5. Example
 
 In <code>elements.yml</code>
 
@@ -186,7 +190,7 @@ The view renders the assigned picture, resizes it, crops it and caches the resul
 
 INFO: See the "rendering images":render_images.html guide for further information on the powerful image rendering engine of Alchemy.
 
-h4. Output
+h5. Output
 
 Depending on the settings and options, the HTML output might look like this:
 
@@ -214,27 +218,29 @@ Depending on the settings and options, the HTML output might look like this:
 <img src="…">
 </pre>
 
+<br />
 
-
-h3. EssenceDate
+h4. EssenceDate
 
 Use this to store a <code>DateTime</code> value. Renders a datepicker in the editor partial.
 
 The view output is passed through Rails' I18n Library, so it is fully localizable.
 
 
-h4. Options
+h5. Options
 
 <code>:date_format</code> <code>String</code><br>
   Specifies the format of the date. Default value: <code>rfc822</code>
 
-h4. Output
+h5. Output
 
 Depending on the <code>:date_format</code>:
 
 INFO: Under construction
 
-h3. EssenceHtml
+<br />
+
+h4. EssenceHtml
 
 Useful to store HTML code (i.e. a embed, or tracking code).
 
@@ -242,11 +248,11 @@ The view renders the raw, not sanitized or escaped output.
 
 <strong>So be careful!</strong>
 
-h4. Options
+h5. Options
 
 <code>:css_class</code> <code>String</code>
 
-h4. Output
+h5. Output
 
 The output might look like this:
 
@@ -257,17 +263,19 @@ The output might look like this:
 </p>
 </pre>
 
-h3. EssenceBoolean
+<br />
+
+h4. EssenceBoolean
 
 Stores a Boolean value in the database. Renders a checkbox in the editor partial.
 Depending on the status of the checkbox, the view output may look different.
 
-h4. Options
+h5. Options
 
 * <code>:default_value</code> <code>Boolean</code><br>
   Sets the default value. If true, checkbox will be checked by default.
 
-h4. Example
+h5. Example
 
 The content of the editor partial (in <code>app/views/alchemy/elements</code>):
 
@@ -277,19 +285,20 @@ The content of the editor partial (in <code>app/views/alchemy/elements</code>):
 <%- end -%>
 </pre>
 
+<br />
 
-h3. EssenceSelect
+h4. EssenceSelect
 
 Renders a select box in the editor partial and stores the value as <code>String</code>.
 
 Useful for letting your user select from a limited set of choices. For example the user can select the background color on an element.
 
-h4. Options
+h5. Options
 
 * <code>:select_values</code> <code>Hash</code><br>
   Sets the values in the drop down list.
 
-h4. Example
+h5. Example
 
 If you copy the following lines to your edit partial of the element, containing an <code>EssenceBoolean</code>, the user will be able to select from the set of existing pages on your website.
 
@@ -300,16 +309,18 @@ If you copy the following lines to your edit partial of the element, containing 
 
 NOTE: Pretty handy together with the <code>page_selector</code> "helper":http://rubydoc.info/github/magiclabs/alchemy_cms/Alchemy/Admin/EssencesHelper#page_selector-instance_method.
 
-h3. EssenceLink
+<br />
+
+h4. EssenceLink
 
 Stores a url in the database. Useful for linking things, where the user should not set the linked value itself. (Like in the EssenceText with <code>linkable: true</code> option)
 
-h4. Options
+h5. Options
 
 * <code>:text</code> <code>String</code><br>
   Sets the text for the link.
 
-h4. Output
+h5. Output
 
 <pre>
 <a href="/yourlink">text</a>
