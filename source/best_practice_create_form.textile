@@ -1,4 +1,4 @@
-h2. Best Practice: How to create a form
+h2. Best Practice: How to create a contact form
 
 This guide covers the configuration setup and create process of a regular contact form:
 
@@ -37,15 +37,15 @@ h4. Mailer Settings
 First of all make sure, that the Alchemy mailer is correctly configured.
 If a user submit the the form usually the user receives a confirmation mail and
 
-This is the default mailer configuration. Replace the place holder(<code>your.mail@your-domain.com</code>) with your own Email.
+This is the default mailer configuration (in <code>config/alchemy/config.yml</code>). Replace the placeholders for <code>mail_from:</code> amd <code>mail_to:</code> with your own email.
 
 <pre>
 mailer:
   page_layout_name: contact
   forward_to_page: false
   mail_success_page: thanks
-  mail_from: your.mail@your-domain.com
-  mail_to: your.mail@your-domain.com
+  mail_from: contact@your-domain.com
+  mail_to: info@your-domain.com
   fields: [salutation, firstname, lastname, address, zip, city, phone, email, message]
   validate_fields: [lastname, email]
 </pre>
@@ -117,44 +117,33 @@ INFO: Disabling the page caching is <strong>highly recommended</strong>!
 Afterwards create new file <code>_contact.html.erb</code> in <code>app/views/alchemy/page_layouts/</code> and insert the "raw HTML Code":https://gist.github.com/ghaida/5054646/raw/cd669ee59ce65510c52a5acc39c1f5dbb7b9c925/gistfile1.html from the Contact Template by Foundation Zurb.
 Instead of using the sample HTMl, feel free to insert your custom HTML code.
 
-h4. Example contact form
-
 Subsequently run the command
 <shell>rails g alchemy:elements --skip</shell>
 to generate the (view and editor) partials.
 
-h5. The contact form view
+h4. Example contact form
 
-We are using the great <code>simple_form</code> gem in this example.
-If this gem is not already installed, you have to add
-<pre>
-gem 'simple_form'
-</pre>
-to your Gemfile and afterwards use <shell>bundle </shell> command to install <code>simple_form</code>.
-
-Open <code>app/views/alchemy/elements/_contactform_view.html.erb</code> in your text editor.
+Navigate to <code>app/views/alchemy/elements/_contactform_view.html.erb</code> and edit it with regard to the field names in <code>config/alchemy/config.yml</code>.
 It should look like this:
 
 <pre>
-<%= simple_form_for(@message ||= Alchemy::Message.new) do |form| %>
-  <%= form.input :firstname %>
-  <%= form.input :lastname %>
-  <%= form.input :email %>
-  <%= form.input :message, :as => :text %>
+<%= form_for(@message ||= Alchemy::Message.new) do |form| %>
   <%= form.hidden_field :contact_form_id, :value => element.id %>
-  <%= form.button :submit %>
-  <%- end -%>
+  <%= form.text_field :firstname %>
+  <%= form.text_field :lastname %>
+  <%= form.text_field :email %>
+  <%= form.text_area :message %>
+  <%= form.submit :submit %>
+<%- end -%>
 </pre>
 
-The helper <code>simple_form_for()</code> is used to generate the form automatically.
+The rails helper <code>form_for()</code> is used to generate the form automatically.
 
-NOTE: See the hidden field? This is important, or the messages mailer can't do all the magic for you.
-
-INFO: Please have a look at the "simple form documentation":https://github.com/plataformatec/simple_form#readme for further infos about the various config options.
+NOTE: See the hidden field? This is important, or the messages mailer can't do all the magic for you. For further information: "MessageController documentation":http://www.rubydoc.info/github/magiclabs/alchemy_cms/Alchemy/MessagesController .
 
 h5. The contact form editor
 
-The <code>app/views/alchemy/elements/_contactform_view.html.erb</code> file should have this layout:
+The <code>app/views/alchemy/elements/_contactform_editor.html.erb</code> file should have this layout:
 
 <pre>
 <%= render_essence_editor_by_name(element, 'mail_from') %>
@@ -177,8 +166,8 @@ de:
   activemodel:
     attributes:
       alchemy/message:
-        firstname: Vorname
-        lastname: Nachname
+        firstname: Your firstname
+        lastname: Your lastname
 </pre>
 
 *If you like to use same vocabulary in different context:*
@@ -186,27 +175,27 @@ de:
 e.g in the <code>app/views/alchemy/elements/_contactform_view.html.erb</code>
 
 <pre>
-<%= form.input ... %>
-<%= form.input :firstname , label: t(:sender, scope: 'my_forms.contactform') %>
-<%= form.input ...  %>
+<%= form.text_field ... %>
+<%= form.text_field :firstname , label: _t(:sender, scope: 'my_forms.contactform') %>
+<%= form.text_area ...  %>
 </pre>
 
-Your language yml should look like this: (<code>config/locales/de.yml</code>)
+Your language yml should look like this: (<code>config/locales/en.yml</code>)
 
 <pre>
 de:
   activemodel:
     attributes:
       alchemy/message:
-        firstname: Vorname
+        firstname: Firstname
         ...
         ...
 my_forms:
   contactform:
-    sender: Sender
+    sender: sender
 </pre>
 
-Now you can reuse the label by using the <code>t</code> function while defining
+Now you can reuse the label by using the <code>_t</code> function while defining
 <code>label</code>.
 
 
