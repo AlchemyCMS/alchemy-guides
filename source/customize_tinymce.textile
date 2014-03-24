@@ -118,7 +118,7 @@ You can also set tinymce configuration options per element.
 
 h3. Configuration Syntax
 
-TIP: You can set any "TinyMCE configuration option":http://www.tinymce.com/wiki.php/Configuration. Just rememebr to _convert_ the javascript syntax into ruby.
+TIP: You can set any "TinyMCE configuration option":http://www.tinymce.com/wiki.php/Configuration. Just remember to _convert_ the javascript syntax into ruby.
 
 h4. Convertions Tips
 
