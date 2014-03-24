@@ -25,19 +25,20 @@ Because Alchemy merges the default options and your custom options you just need
 
 <pre>
 # config/initializers/tinymce.rb
-Alchemy::Tinymce.init = {
-  :theme_advanced_buttons1 => 'bold,italic,underline',
-  :theme_advanced_buttons2 => ''
+Alchemy::Tinymce.init={
+    toolbar1: 'bold italic underline',
+    toolbar2: 'pastetext charmap code | undo redo | alchemy_link unlink | alignleft aligncenter alignright alignjustify'
 }
 </pre>
 
-Now only this three basic formatting options are available to your editors.
+Now only this three basic formatting options are available in the first toolbar to your editors.
+In the second toolbar are now the align formatting options available.
 
 NOTE: Overriding options always applies to all richtext editors in all elements in Alchemy.
 
 h3. Custom toolbar buttons
 
-You can customize the TinyMCE toolbar with a lot of buttons. Find them in the "TinyMCE documentation":http://www.tinymce.com/wiki.php/Buttons/controls
+You can customize the TinyMCE toolbar with a lot of buttons. Find them in the "TinyMCE documentation":http://www.tinymce.com/wiki.php/Controls
 
 h4. Adding a format select box
 
@@ -48,7 +49,7 @@ In the TinyMCE documentation we found our configuration option:
 <pre>
 tinyMCE.init({
   ...
-  theme_advanced_blockformats : "p,div,h1,h2,h3,h4,h5,h6,blockquote,dt,dd,code,samp"
+  block_formats: "Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3"
 });
 </pre>
 
@@ -58,8 +59,8 @@ And we need to insert the format select into the set of buttons.
 <pre>
 # config/initializers/tinymce.rb
 Alchemy::Tinymce.init = {
-  :theme_advanced_buttons2 => 'pastetext,pasteword,formatselect,charmap,code,help',
-  :theme_advanced_blockformats => "p,h2"
+  toolbar2: 'pastetext charmap code | undo redo | alchemy_link unlink | alignleft aligncenter alignright alignjustify',
+  block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3'
 }
 </pre>
 
@@ -111,8 +112,8 @@ You can also set tinymce configuration options per element.
     type: EssenceRichtext
     settings:
       tinymce:
-        theme_advanced_buttons1: 'bold,italic,underline'
-        theme_advanced_buttons2: ''
+        toolbar1: 'bold italic underline',
+        toolbar2: 'pastetext charmap code | undo redo | alchemy_link unlink | alignleft aligncenter alignright alignjustify'
 </pre>
 
 h3. Configuration Syntax
