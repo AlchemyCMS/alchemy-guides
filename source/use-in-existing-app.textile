@@ -1,0 +1,188 @@
+If you want to add Alchemy-CMS 3.x to an existing rails 3.x app, you will need to upgrade your app to rails 4, you can still use previous versions of Alchemy-CMS, but here are good reasons for using Alchemy-CMS 3.x:
+
+1. Comptable with rails 4
+2. Ease of integration with your existing app, even if you have your own authentication solution or using popular gems like devise.
+
+In your app user class, the only attribue that Alchemy-CMS needs in order to run is 'alchemy_roles'.
+
+You can add it like this:
+
+def alchemy_roles
+    # return a string using your existing logic
+    # expected roles are: member, author, editor, admin
+end
+
+So, you don't even need to add it to data base.
+
+But, there are still few other attributes that are good to have in your user class which are:
+
+1. 'name' this would be needed to say Welcome back {user name}
+2. 'logged_in?' which is used in dashboard to view online users
+
+def logged_in?
+      raise "Can not determine the records login state because there is no last_request_at column" if !respond_to?(:last_request_at)
+      !last_request_at.nil? && last_request_at > logged_in_timeout.seconds.ago
+end
+
+def logged_in_timeout
+      Alchemy::Config.get(:auto_logout_time).minutes.to_i
+end
+
+
+You need to add 'last_request_at' as a datetime field to your users table.
+
+3. 'login'
+
+In your user model, you will need to put:
+validates_uniqueness_of :login
+And you will need to add login as a string to your users fields.
+
+4. 'language' as a string to your users table.
+5. 'creator_id' as integer to your users table.
+6. 'updater_id' as integer to your users table.
+7. 'cached_tag_list' as text to your users table.
+
+
+8. add to your user class:
+  acts_as_taggable
+  acts_as_tagger
+  
+And finally, if you are using gem 'protected_attributes' you will need to add this to your initialize:
+
+module Alchemy
+  Attachment.attr_accessible :file,
+                             :name,
+                             :file_name,
+                             :tag_list
+  Cell.attr_accessible :page_id, :name
+  Content.attr_accessible :do_not_index,
+                          :element_id,
+                          :essence_id,
+                          :essence_type,
+                          :ingredient,
+                          :name
+  Element.attr_accessible :cell_id,
+                          :create_contents_after_create,
+                          :folded,
+                          :name,
+                          :page_id,
+                          :public,
+                          :tag_list,
+                          :unique
+  EssenceBoolean.attr_accessible :value
+  EssenceDate.attr_accessible :date
+  EssenceFile.attr_accessible :title,
+                              :css_class,
+                              :attachment_id
+  EssenceHtml.attr_accessible :source
+  EssenceLink.attr_accessible :link,
+                              :link_title,
+                              :link_class_name,
+                              :link_target
+  EssencePicture.attr_accessible :caption,
+                                 :title,
+                                 :alt_tag,
+                                 :link,
+                                 :link_class_name,
+                                 :link_title,
+                                 :css_class,
+                                 :link_target,
+                                 :crop_from,
+                                 :crop_size,
+                                 :render_size,
+                                 :picture_id
+  EssenceRichtext.attr_accessible :do_not_index,
+                                  :body,
+                                  :public,
+                                  :stripped_body
+  EssenceSelect.attr_accessible :value
+  EssenceText.attr_accessible :do_not_index,
+                              :body,
+                              :public,
+                              :link,
+                              :link_title,
+                              :link_class_name,
+                              :link_target
+  Language.attr_accessible :name,
+                           :language_code,
+                           :frontpage_name,
+                           :page_layout,
+                           :public,
+                           :default,
+                           :country_code,
+                           :code,
+                           :site
+  LegacyPageUrl.attr_accessible :page,
+                                :page_id,
+                                :urlname
+  Page.attr_accessible :do_not_autogenerate,
+                       :do_not_sweep,
+                       :language_code,
+                       :language,
+                       :language_id,
+                       :language_root,
+                       :layoutpage,
+                       :locked,
+                       :locked_by,
+                       :meta_description,
+                       :meta_keywords,
+                       :name,
+                       :page_layout,
+                       :parent_id,
+                       :public,
+                       :restricted,
+                       :robot_index,
+                       :robot_follow,
+                       :sitemap,
+                       :tag_list,
+                       :title,
+                       :urlname,
+                       :visible
+  Picture.attr_accessible :image_file,
+                          :name,
+                          :tag_list,
+                          :upload_hash
+  Site.attr_accessible :host,
+                       :aliases,
+                       :name,
+                       :public,
+                       :redirect_to_primary_host
+  User.attr_accessible :firstname,
+                       :lastname,
+                       :login,
+                       :email,
+                       :gender,
+                       :language,
+                       :password,
+                       :password_confirmation,
+                       :roles,
+                       :send_credentials,
+                       :tag_list
+end
+  
+  
+If you have a devise.rb in your initializers, make sure to put the above module AFTER devise initializer file, as devise need to be initialized first.
+
+  
+
+
+      
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
