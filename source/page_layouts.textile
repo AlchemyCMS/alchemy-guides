@@ -40,11 +40,7 @@ INFO: You can disable caching of certain pages in the <code>page_layouts.yml</co
 
 h3. Create page layouts
 
-<<<<<<< HEAD
-Follow this guide to learn how to "create page layouts":create_page_layouts.html which can be chosen by the user when creating a new page.
-=======
 Follow this guide to learn how to create page_layouts which than can be chosen by the user while creating a new page.
->>>>>>> Corrects dead links
 
 h4. Defining page layouts
 

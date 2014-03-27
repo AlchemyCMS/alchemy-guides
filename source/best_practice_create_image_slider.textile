@@ -12,6 +12,8 @@ Imagine you would like to welcome your visitors with a slide show with
 impressive pictures.
 
 The following steps use the orbit slider provided by "Foundation Zurb":http://foundation.zurb.com/docs/components/orbit.html (© ZURB, Inc).
+Have a look at "Best Practice: Create a Blog Template":best_practice_create_blog_template.html#prerequisites in order to integrate Foundation Zurb into your project.
+
 
 endprologue.
 
@@ -87,7 +89,7 @@ We use <code>render_essence_view</code> to render the image (See "documentation"
 We use the <code>div</code>-Container due to the availabe css defintions.
 We already included the CSS definition by Foundation Zurb in "Best Practice Create a Blog Template":best_practice_create_blog_template.html#prerequisites, so please make up for it.
 
-Open the editor partial <code>_slider_edit.html.erb</code> in <code>app/views/alchemy/elements</code> and edit to:
+Open the editor partial <code>_slider_editor.html.erb</code> in <code>app/views/alchemy/elements</code> and edit to:
 
 <pre>
 <%= render_picture_gallery_editor(element, image_size: '1000x400', crop: true) %>

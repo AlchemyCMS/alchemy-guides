@@ -37,7 +37,7 @@ h4. Create form (contact)
 
 In order to offer your visitors the opportunity to contact you, its quite common to provide a contact form
 instead of just display your email.
-"Best Practice: Create a Form":best_practice_create_form.html
+"Best Practice: Create a (contact) Form":best_practice_create_form.html
 
 h4. Create image-slider
 

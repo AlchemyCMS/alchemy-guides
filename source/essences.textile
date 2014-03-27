@@ -236,7 +236,7 @@ h5. Output
 
 Depending on the <code>:date_format</code>:
 
-INFO: Under construction
+INFO: Will follow soon
 
 <br />
 

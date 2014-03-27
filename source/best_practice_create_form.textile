@@ -17,6 +17,8 @@ required elements.
 
 *We will build the contact form element according to "Contact Template:":http://foundation.zurb.com/page-templates4/contact.html by Foundation Zurb (© ZURB, Inc).*
 
+Have a look at "Best Practice: Create a Blog Template":best_practice_create_blog_template.html#prerequisites in order to integrate Foundation Zurb into your project.
+
 endprologue.
 
 h3. Concept and structure

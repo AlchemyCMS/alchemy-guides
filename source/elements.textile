@@ -2,7 +2,7 @@ h2. Elements
 
 Elements are customizable parts of your page. An article with headline, text block and a picture is an typical element.
 
-An element contains one or more contents of a specific essences type.
+An element mostly contains one or more contents of a specific essence type.
 There are "essence types":essences.html for every type of data that can be stored in a database.
 
 * Defintion of an element
@@ -25,7 +25,7 @@ rails g alchemy:scaffold
 h4. Element settings
 
 * <code>name</code> <code>String</code> <strong>required</strong><br>
-  A unique name of the element. This name is used in the <code>page_layouts.yml</code> file and in the <code>app/views/alchemy/elements</code> view partials. The name itself is "translatable":#translations. The format has to be <strong>lowercase</strong> and seperated words has to be <strong>underscored</strong>.
+  A unique name of the element. This name is used in the <code>page_layouts.yml</code> file and in the <code>app/views/alchemy/elements</code> partials. The name itself is "translatable":#translations. The format has to be <strong>lowercase</strong> and seperated words has to be <strong>underscored</strong>.
 * <code>unique</code> <code>Boolean</code><br>
   (Default: <code>false</code>) Passing <code>true</code> means, that this element can only be placed once on a page.
 * <code>contents</code> <code>Array</code><br>
@@ -38,12 +38,12 @@ h4. Render simple text
 The following sequence defines an element containing a headline and a description.
 
 <pre>
+- name: headline
+  contents:
   - name: headline
-    contents:
-    - name: headline
-      type: EssenceText
-    - name: description
-      type: EssenceRichtext
+    type: EssenceText
+  - name: description
+    type: EssenceRichtext
 </pre>
 
 NOTE: <b>Please ensure to restart the server after editing the elements.yml .</b>
@@ -63,14 +63,20 @@ h5. Example of element description with picture gallery editor:
     picture_gallery: true
 </pre>
 
-INFO: The view generator takes care of the rest. If you add the picture gallery editor into an existing element you have to insert <code>render_picture_gallery_editor(element)</code> into your elements editor partial.
+INFO: The view generator <code>rails g alchemy:elements --skip</code> takes care of the partials. If you add the picture gallery editor to an existing element you have to insert <code>render_picture_gallery_editor(element)</code> into your elements editor partial.
 
-NOTE: If you want to limit the amount of pictures a user can add to the gallery use the <code>maximum_amount_of_images</code> option on the <code>render_picture_gallery_editor</code> helper.
+h5. Code example of element editor partial (_picture_gallery_editor.html.haml)
 
 h5. Code example of element editor partial (<code>_picture_gallery_editor.html.haml</code>)
 
 <pre>
-= render_picture_gallery_editor(element, :max_images => nil, image_size: "346x246", crop => true, fixed_ratio: true)
+= render_picture_gallery_editor(element, :max_images => nil, image_size: "346x246", :crop => true, fixed_ratio: true)
+</pre>
+
+The counterpart in <strong>embedded Ruby (ERB)</strong> (<code>_picture_gallery_editor.html.erb</code>) might look like this:
+
+<pre>
+<%= render_picture_gallery_editor(element, image_size: "346x246", :max_images => nil , :crop => true, fixed_ratio: true) %>
 </pre>
 
 NOTE: You can pass optional settings to the helper: The <code>max_images</code> option limits the amount of pictures a user can add to the gallery. To enable the image cropping feature for the user you need to pass true to the <code>crop</code> option.
@@ -83,53 +89,38 @@ h5. The following code example shows how to render the element with the picture 
     = render_essence_view(image, :image_size => "346x246", :crop => true)
 </pre>
 
+This code example illustrates the image cropping feature (including image caption):
+
+<pre>
+= element_view_for(element) do |el|
+  #gallery
+    - element.contents.gallery_pictures.each do |image|
+      = render_essence_view(image, :size => "346x246")
+  .caption
+    = el.render :caption
+  .show_caption
+    = el.render :show_caption
+</pre>
+
+If you are using <strong>ERB</strong> instead of <strong>Haml</strong> it might look like this:
+
+<pre>
+<%= element_view_for(element) do |el| %>
+  <div id="gallery">
+    <% element.contents.gallery_pictures.each do |image| %>
+      <%= render_essence_view(image, :size => "346x246") %>
+  </div>
+  <div class="caption">
+    <%= el.render :caption %>
+  </div>
+  <div class="show_caption">
+    <%= el.render :show_caption %>
+  </div>
+<% end %>
+</pre>
+
 Alternatively, if you want to customize the way the gallery pictures are rendered, you can create the plain image tag by yourself and use the Alchemy Picture url helper:
 <code>image_tag show_alchemy_picture_url(image.essence.picture, :size => "102x73", :format => "png")</code>
-
-The view partial may look like this:
-
-<pre>
-<div class="gallery" id="<%= element_dom_id(element) %>"<%= element_preview_code(element) -%>>
-  <div class="image">
-    <%= render_essence_view_by_name(element, 'image') %>
-  </div>
-  <div class="headline">
-    <%= render_essence_view_by_name(element, 'headline') %>
-  </div>
-  <div class="text">
-    <%= render_essence_view_by_name(element, 'text') %>
-  </div>
-</div>
-</pre>
-
-NOTE: You can pass optional settings to the helper: The <code>max_images</code> option limits the amount of pictures a user can add to the gallery. To enable the image cropping feature for the user you need to pass true to the <code>crop</code> option.
-
-This code example illustrates the image cropping feature:
-
-<pre>
-= element_view_for(element, :id => 'gallery') do |el|
-  - element.contents.gallery_pictures.each do |image|
-    = render_essence_view(image, :image_size => "346x246", :crop => true)
-</pre>
-
-Alternatively, if you want to customize the way the gallery pictures are rendered, you can create the plain image tag by yourself and use the Alchemy Picture url helper:
-<code>image_tag show_alchemy_picture_url(image.essence.picture, :size => "102x73", :format => "png")</code>
-
-The view partial may look like this:
-
-<pre>
-<div class="gallery" id="<%= element_dom_id(element) %>"<%= element_preview_code(element) -%>>
-  <div class="image">
-    <%= render_essence_view_by_name(element, 'image') %>
-  </div>
-  <div class="headline">
-    <%= render_essence_view_by_name(element, 'headline') %>
-  </div>
-  <div class="text">
-    <%= render_essence_view_by_name(element, 'text') %>
-  </div>
-</div>
-</pre>
 
 h4. Adding contents dynamically
 
@@ -140,7 +131,7 @@ If you also want to allow the users to delete these contents you can also define
 
 It is important to define the dynamic content twice, below <code>contents:</code> and <code>available_contents:</code>
 
-h5. Example
+NOTE: It is necessary to define the contents which should be dynamic twice. In <code>contents</code> and <code>available_contents</code>.
 
 <pre>
 - name: headline
@@ -163,11 +154,11 @@ Additionally you need to alter the editor partial of that element for rendering 
 h5. Example
 
 <pre>
-  <% element.all_contents_by_name('big_text').each do |content| %>
-    <%= label_and_remove_link(content) %>
-    <%= render_essence_editor(content) %>
-  <% end %>
-  <p><%= render_create_content_link(element, 'big_text', :label => _t('add_big_text')) %></p>
+<% element.all_contents_by_name('big_text').each do |content| %>
+  <%= label_and_remove_link(content) %>
+  <%= render_essence_editor(content) %>
+<% end %>
+<p><%= render_create_content_link(element, 'big_text', :label => _t('add_big_text')) %></p>
 </pre>
 
 As you can see in the example, we've used the <code>label_and_remove_link</code> helper. It renders a label with the name of that content and a small button to delete it.
@@ -286,7 +277,7 @@ de:
         color: Button Farbe
 </pre>
 
-h4. An example element
+h3. An example element
 
 Lets create an article element for your website.
 As already mentioned, elements get defined in the <code>config/alchemy/elements.yml</code> file.
@@ -304,9 +295,9 @@ As already mentioned, elements get defined in the <code>config/alchemy/elements.
     type: EssenceRichtext
 </pre>
 
-This element is named gallery. It can be placed only once per page and it has three "contents":elements.html from type <code>EssencePicture</code>, <code>EssenceText</code> and <code>EssenceRichtext</code>.
+This element is named <strong>article</strong>. It can be placed only once per page and it has three "contents":elements.html from type <code>EssencePicture</code>, <code>EssenceText</code> and <code>EssenceRichtext</code>.
 
-h3. Assign elements to page layouts
+h4. Assign elements to page layouts
 
 Before you can use elements on pages, you need to define on which page types your element can be placed.
 This depends on the page´s page_layout, so open <code>config/alchemy/page_layouts.yml</code> in your favorite text editor and put the name of your new element into the list of available elements for a specific page layout.
@@ -317,10 +308,10 @@ This depends on the page´s page_layout, so open <code>config/alchemy/page_layou
   autogenerate: [article]
 </pre>
 
-You can now place the article element on every page which has the page layout named `standard`.
+You can now place the article element on every page which has the page layout named <strong>standard</strong>.
 And all in the future created pages that are from standard page layout will automatically generate the article element for you.
 
-h3. Generating the partials
+h4. Generating the partials
 
 After typing the line below in your terminal, the rails generator will create the elements editor and view files.
 
@@ -333,21 +324,32 @@ The default is depending on your default template engine in your Rails host app.
 
 The generator will create two files for every element into your <code>app/views/alchemy/elements</code> folder.
 
-One file is named <code>_gallery_view.html.erb</code> and the second file is named <code>_gallery_editor.html.erb</code>.
+One file is named <code>_article_view.html.erb</code> and the second file is named <code>_article_editor.html.erb</code>.
 
-# The element's view file  <code>_gallery_view.html.erb</code> gets rendered, when a user requests your webpage.
-# The element's editor file <code>_gallery_editor.html.erb</code> gets rendered, when you edit the page in the Alchemy page editor.
+# The element's view file  <code>_article_view.html.erb</code> gets rendered, when a user requests your webpage.
+# The element's editor file <code>_article_editor.html.erb</code> gets rendered, when you edit the page in the Alchemy page editor.
 
 The generator does not only create files, it also generates the necessary code for you. Mostly you can take use of this generated code and make them nifty by putting some CSS stylings on it.
 
-h3. Customizing the view partial
+For example, the the editor partial for the <strong>article</strong> element may look like this:
+
+<pre>
+<%= element_editor_for(element) do |el| -%>
+  <%= el.edit :image %>
+  <%= el.edit :headline %>
+  <%= el.edit :text %>
+<%- end -%>
+</pre>
+
+
+h4. Customizing the view partial
 
 The Alchemy element generator creates a html layout for you.
 
 It looks like this:
 
 <pre>
-<div class="gallery" id="<%= element_dom_id(element) %>"<%= element_preview_code(element) -%>>
+<div class="article" id="<%= element_dom_id(element) %>" <%= element_preview_code(element) -%>>
   <div class="image">
     <%= render_essence_view_by_name(element, 'image') %>
   </div>
@@ -356,25 +358,6 @@ It looks like this:
   </div>
   <div class="text">
     <%= render_essence_view_by_name(element, 'text') %>
-  </div>
-</div>
-</pre>
-
-or according to *example 1.9*
-
-<pre>
-<%= elements_view_for(elements) do |el| %>
-<h3><%= el.render :headline  %></h3>
-<div class="row">
-  <div class="large-6 columns">
-    <p>
-      <%= el.render :image %>
-    </p>
-  </div>
-  <div class="large-6 columns">
-    <p>
-      <%= el.render :text %>
-    </p>
   </div>
 </div>
 </pre>
@@ -394,25 +377,40 @@ INFO: The view partial of an element is used for all elements of that kind.
 If you want to have a different HTML layout for a specific element, create a new one and place it on a specific page layout.
 It is common to have lots of element layouts defined that are grouped on several page layouts.
 
-h3. Integrate elements in your page layout
+h4. Integrate elements in your page layout
 
 Eventually you have to add your elements to your page layout.
 
-Imagine you like to integrate your 'article' element as introduced above in your 'standard' page layout.
-The following lines will make the element visible in your page layout(in <code>app/views/alchemy/page_layouts/_standard.html.erb</code>).
+Imagine you like to integrate your recently created <strong>article</strong> element as introduced above in your 'standard' page layout.
+The following lines will make the element visible in your page layout (in <code>app/views/alchemy/page_layouts/_standard.html.erb</code>).
 
 <pre>
 <!-- Main Page Content and Sidebar -->
 
 <div class="row">
-
-  <!-- Main Blog Content -->
+...
+  <!-- Main Content -->
   <div class="large-9 columns" role="content">
-    <%= render_elements only: 'blog_post' %>
+    <%= render_elements only: 'article' %>
   </div>
-
   <!-- End Main Content -->
+...
+</div>
 </pre>
 
+If you like to render all defined elements for a page layout you can just use the helper:
+
+<pre>
+<%= render_elements %>
+</pre>
+
+without any option.
+<p>Otherwise if you want to prevent some elements from beeing displayed on a page:</p>
+
+<pre>
+<%= render_elements except: ['article', 'picture_gallery'] %>
+</pre>
+
+All elements which are defined for the specific page layout except <code>article</code> and <code>picture_gallery</code> will be displayed.
 
 &nbsp;
