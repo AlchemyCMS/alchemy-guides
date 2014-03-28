@@ -10,6 +10,9 @@ h3. What to Contribute?
 * Coding and testing
 ** Alchemy CMS needs more people fixing bugs, coding features, testing, or developing plugins.
 
+* Discuss about Alchemy CMS
+** Give us feedback about your experiences with Alchemy and propose new features. Public discussion is available on the Trello Board.
+
 * Authoring guidelines
 ** Help the community by writing down your knowledge. Add missing guides, fix outdated chapters, or just report it.
 
@@ -24,5 +27,6 @@ h3. Contact
 You don´t know how to get started? Get in contact with the community and ask for help, you´re welcome!
 
 * Mailinglist (Google Group): "http://groups.google.com/group/alchemy-cms":http://groups.google.com/group/alchemy-cms
+* Trello: "Alchemy CMS Board":https://trello.com/alchemycms
 * Twitter: "@alchemy_cms":http://twitter.com/alchemy_cms
 * Email : alchemy@magiclabs.de

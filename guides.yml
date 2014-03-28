@@ -50,6 +50,7 @@ index:
     - title: Essences
       url: essences
       text: What are essences and how do they work.
+      construction: true
 
   3.) How to work with Alchemy:
     - title: The Alchemy approach
@@ -60,7 +61,7 @@ index:
       url: best_practice_create_blog_template
       text: Best practice in creating an editable blog template.
 
-    - title: How to create a form
+    - title: How to create a contact form
       url: best_practice_create_form
       text: Best practice in creating (contact) form.
 
@@ -79,6 +80,7 @@ index:
     - title: Upgrading Alchemy
       url: upgrading
       text: Learn how to upgrade Alchemy to newest version
+      construction: true
 
   4.) Customization guides:
 
@@ -100,5 +102,6 @@ index:
   6.) Deployment:
     - title: Deploying on RailsHoster
       url: deploy_on_railshoster
-      text: How to deploy your Alchems site on RailsHoster.
+      text: How to deploy your Alchemy site on RailsHoster.
+
 

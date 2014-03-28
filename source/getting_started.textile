@@ -128,7 +128,6 @@ h3. Next steps
 As next you should to read about:
 
 * "Alchemy's architecture":architecture.html
-* "The Standard Set":standard_set.html
-* Customizing "page layouts":create_page_layouts.html and "elements":create_elements.html.
+* Customizing "page layouts":page_layouts.html and "elements":elements.html.
 
 &nbsp;

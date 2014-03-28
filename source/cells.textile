@@ -1,5 +1,10 @@
 h2. Cells
 
+This guide give you general information about cell, including:
+
+* Defintion of cells
+* Rendering
+
 endprologue.
 
 h3. What are Cells?

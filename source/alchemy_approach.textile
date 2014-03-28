@@ -1,4 +1,11 @@
-h2. How to work with Alchemy CMS (best practices)
+h2. How to work with Alchemy CMS
+
+This guide covers some general strategy for using Alchemy.
+
+* Conceptional structuring
+* Best practices for common problems
+
+
 
 endprologue.
 
@@ -13,7 +20,7 @@ After that the developer will look deeper to the content and will perhaps split 
 Cells can be rendered on page-layouts and are acting as containers for elements.
 "More about Cells »":cells.html
 
-In any case the developer splits the content into elements. That means grouping the smallest parts of the website (the contents).
+In any case the developer splits the content into elements. That means grouping the smallest parts of the website (the contents), e.g. content section or an image slider.
 Elements are containers for essences (called contents) and can be rendered on page-layouts or in cells.
 "More about Elements »":elements.html
 
@@ -24,18 +31,16 @@ h3. Examples
 
 h4. Create Blog template
 
-Websites often contain blog pages. If you like to find out how to create a blog page using Alchemy, visit "Best Practice: Create Blog Template":best_practice_create_blog_template.html
+Websites often contain blog pages. If you like to find out how to create a blog page using Alchemy, visit "Best Practice: Create a Blog Template":best_practice_create_blog_template.html
 
 h4. Create form (contact)
 
-"Best Practice: Create form":best_practice_create_form.html
+In order to offer your visitors the opportunity to contact you, its quite common to provide a contact form
+instead of just display your email.
+"Best Practice: Create a (contact) Form":best_practice_create_form.html
 
 h4. Create image-slider
 
-"Best Practice: Create Image-slider":best_practice_create_image_slider.html
-
-h4. Using the implemented fulltext search
-
-INFO: under construction
+Most of the intro pages contain kinds of slider. Visit "Best Practice: Create an Image-slider":best_practice_create_image_slider.html for futher information.
 
 &nbsp;
