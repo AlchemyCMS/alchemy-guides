@@ -244,6 +244,23 @@ h5. Example:
     validate_format_with: [a-z0-9]
 </pre>
 
+
+h4. Preview for element editor
+
+By default the header of an element editor (in the backend) shows the name of the element and the value of the first content.
+If your first content is an <code>EssencePicture</code>, you would see the <strong>picture id</strong>. By using <code>take_me_for_preview</code>, you can define a more meaningful content (e. g. headline if exists):
+
+<pre>
+- name: text
+  contents:
+  ...
+  - name: headline
+    type: EssenceText
+    take_me_for_preview: true
+</pre>
+
+In case of more than one content with <code>take_me_for_preview: true</code> option, the <strong>first detected content</strong> will be used.
+
 h4. Translations
 
 Element and content names are passed through the I18n library.
