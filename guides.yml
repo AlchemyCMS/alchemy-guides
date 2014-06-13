@@ -50,7 +50,6 @@ index:
     - title: Essences
       url: essences
       text: What are essences and how do they work.
-      construction: true
 
   3.) How to work with Alchemy:
     - title: The Alchemy approach
@@ -80,7 +79,6 @@ index:
     - title: Upgrading Alchemy
       url: upgrading
       text: Learn how to upgrade Alchemy to newest version
-      construction: true
 
   4.) Customization guides:
 
