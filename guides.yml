@@ -1,6 +1,6 @@
 title: Alchemy CMS Guides
 description: "Alchemy CMS is an awesome Content Management System with a flexible content storing architecture."
-version: "2.7.0"
+version: "2.9.0"
 
 authors:
   Core Team:
@@ -50,7 +50,6 @@ index:
     - title: Essences
       url: essences
       text: What are essences and how do they work.
-      construction: true
 
   3.) How to work with Alchemy:
     - title: The Alchemy approach
@@ -80,14 +79,12 @@ index:
     - title: Upgrading Alchemy
       url: upgrading
       text: Learn how to upgrade Alchemy to newest version
-      construction: true
 
   4.) Customization guides:
 
     - title: Customizing the Richtext Editor
       url: customize_tinymce
       text: Learn how to customize the TinyMCE richtext editor.
-
 
   5.) Advanced topics:
 
@@ -98,6 +95,11 @@ index:
     - title: Create Modules
       url: create_modules
       text: How to create custom modules.
+
+    - title: Custom Authentication
+      url: custom_authentication
+      text: How to add your own custom authentication.
+
 
   6.) Deployment:
     - title: Deploying on RailsHoster

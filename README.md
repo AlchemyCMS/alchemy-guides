@@ -1,7 +1,7 @@
 The Alchemy CMS Guidelines
 ==========================
 
-These Alchemy guides cover Alchemy CMS v.2.7
+These Alchemy guides cover Alchemy CMS v.2.9
 
 The guides are created with the [guides](https://github.com/wycats/guides) gem and are written in [textile](http://redcloth.org/textile) markup.
 

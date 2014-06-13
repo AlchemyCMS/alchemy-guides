@@ -9,7 +9,6 @@ endprologue.
 
 
 
-
 h3. Guide Assumptions
 
 This guide is designed for beginners who want to get started with Alchemy CMS from scratch. It does not assume that you have any prior experience with Alchemy CMS. However, to get the most out of it, you need to have some prerequisites installed:
@@ -67,7 +66,7 @@ If you already have an existing Rails application, you can require the Alchemy C
 Just add this line to your Gemfile.
 
 <pre>
-gem 'alchemy_cms', '~> 2.7.1'
+gem 'alchemy_cms', :github => 'magiclabs/alchemy_cms', :branch => '2.9-stable'
 </pre>
 
 Since Alchemy CMS is a mountable engine, you need to define the mountpoint in your <code>config/routes.rb</code> file.
