@@ -84,6 +84,18 @@ Finally, run the following command to finish the upgrade process:
 bundle exec rake alchemy:upgrade
 </shell>
 
+h5. Additional information
+
+<strong>nested URLs are activated by default</strong>
+
+Unless you intend to use nested URL (like <code>/portfolio/consulting</code>), you should disable
+URL Nesting via:
+
+<pre>
+# config/alchemy/config.yml
+url_nesting: false
+</pre>
+
 <br />
 
 h4. Upgrade from version 2.4 to 2.5
@@ -152,6 +164,18 @@ The method has been changed, in order to avoid conflicts with the <code>t</code>
 
 If your website is based on the <code>standard-set</code> of Alchemy, make sure to add the gem: <code>alchemy-demo_kit</code> to your
 Gemfile.
+
+<strong>EssencePicture uses figure and figcaption</strong>
+
+Since several Browser do not provide styles for these tags, you have to define them on you own.
+
+For example:
+
+<pre>
+figure {
+  margin: 0;
+}
+</pre>
 
 <br />
 
