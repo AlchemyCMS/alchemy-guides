@@ -21,7 +21,7 @@ That part of your updated Gemfile should look like this:
 <ruby>
 ...
 gem 'alchemy_cms', :github => 'magiclabs/alchemy_cms', :branch => '2.9-stable'
-gem 'alchemy-devise', :github => 'magiclabs/alchemy-devise', :branch => 'master'
+gem 'alchemy-devise', :github => 'magiclabs/alchemy-devise', :branch => '1.1-stable'
 ...
 </ruby>
 
