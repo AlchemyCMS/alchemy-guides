@@ -1,15 +1,15 @@
 set :application, "alchemy-guides"
 
 set :scm, :none
-set :repository,  "./output"
+set :repository,  "./guides/output"
 set :deploy_via, :copy
-set :deploy_to, "/var/www/alchemy-guides"
+set :deploy_to, "/var/www/alchemy-guides/html"
 set :guide_version, -> do
   branch = `git rev-parse --abbrev-ref HEAD`.strip
   branch == 'master' ? 'edge' : branch
 end
 set :current_path, "#{deploy_to}/#{guide_version}"
-set :user, 'web1'
+set :user, 'guides'
 
 role :app, "alchemy-cms.com"
 set :use_sudo, false
