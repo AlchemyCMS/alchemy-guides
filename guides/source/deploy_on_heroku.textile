@@ -55,8 +55,8 @@ Run the following commands on your command shell to set some environment variabl
 <shell>
 $ heroku config:set AWS_ACCESS_KEY_ID=your-key-id
 $ heroku config:set AWS_SECRET_ACCESS_KEY=your-key
-$ heroku config:set AWS_PICTURES_DIRECTORY=my-project-pictures
-$ heroku config:set AWS_ATTACHMENTS_DIRECTORY=my-project-attachments
+$ heroku config:set AWS_PICTURES_BUCKET=my-project-alchemy-pictures
+$ heroku config:set AWS_ATTACHMENTS_BUCKET=my-project-alchemy-attachments
 </shell>
 
 h3. Code adjustments
@@ -116,12 +116,12 @@ if Rails.env.production?
   Dragonfly.app(:alchemy_pictures).configure do
     plugin :imagemagick
     datastore :s3,
-      { bucket_name: Rails.configuration.aws_pictures_directory }.merge(aws_defaults)
+      { bucket_name: Rails.configuration.aws_pictures_bucket }.merge(aws_defaults)
   end
 
   Dragonfly.app(:alchemy_attachments).configure do
     datastore :s3,
-      { bucket_name: Rails.configuration.aws_attachments_directory }.merge(aws_defaults)
+      { bucket_name: Rails.configuration.aws_attachments_bucket }.merge(aws_defaults)
   end
 end
 </ruby>
@@ -157,8 +157,8 @@ Paste the following lines to your <code>config/environments/production.rb</code>
 <ruby>
 config.aws_access_key_id = ENV['AWS_ACCESS_KEY_ID']
 config.aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
-config.aws_pictures_directory = ENV['AWS_PICTURES_DIRECTORY']
-config.aws_attachments_directory = ENV['AWS_ATTACHMENTS_DIRECTORY']
+config.aws_pictures_bucket = ENV['AWS_PICTURES_BUCKET']
+config.aws_attachments_bucket = ENV['AWS_ATTACHMENTS_BUCKET']
 </ruby>
 
 h4. Prepare your seeds.rb
