@@ -20,7 +20,7 @@ mailer:
   mail_success_page: thanks
   mail_from: your.mail@your-domain.com
   mail_to: your.mail@your-domain.com
-  fields: [salutation, firstname, lastname, address, zip, city, phone, email, message]
+  fields: [salutation, firstname, lastname, address, zip, city, phone, email, message, contact_form_id]
   validate_fields: [lastname, email]
 ~~~
 
