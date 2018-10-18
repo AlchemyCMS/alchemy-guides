@@ -35,7 +35,7 @@ INFO: It is <strong>highly recommended</strong> that you use this for your defau
 
 h4. Rendering Options
 
-* <code>image_size</code> <code>String</code><br>
+* <code>size</code> <code>String</code><br>
   The dimensions the image should be resized to, while keeping the aspect ratio. Example <code>"400x300"</code>.
 * <code>crop</code> <code>Boolean</code><br>
   Pass <code>true</code> to crop the image to the given size.
