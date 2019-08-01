@@ -73,26 +73,23 @@ That's it. Now the editor can format a block of text as headline 2. Nice!
 Custom buttons always appear in all richtext editors in all elements in Alchemy.
 :::
 
-### Adding editor plugins
-It's possible to configure editor with it's plugins.
-All you have to do is copy (for example) the tinymce list plugin folder to 
-~~~
-vendor/assets/javascripts/tinymce/plugins
-~~~
+## Adding editor plugins
+It’s possible to configure the editor with plugins.
+All you have to do is to download the tinymce plugin and copy the folder to
+`vendor/assets/javascripts/tinymce/plugins`
 
 and add the following content to config/initializers/tinymce.rb
 
 ~~~
 Alchemy::Tinymce.init = {
-    plugins: Alchemy::Tinymce.plugins + ['lists'],
-    toolbar: [
-        'bold italic underline | strikethrough subscript superscript | numlist bullist indent outdent | removeformat | alignleft aligncenter alignright | fullscreen',
-        'pastetext charmap hr | undo redo | alchemy_link unlink anchor | code'
-    ]
+  plugins: Alchemy::Tinymce.plugins + ['colorpicker'],
+  toolbar: [
+    'bold italic underline | strikethrough subscript superscript | numlist bullist indent outdent | removeformat | alignleft aligncenter alignright | fullscreen', 
+    'pastetext charmap hr | undo redo | alchemy_link unlink anchor | code | colorpicker'
+  ]
 }
 ~~~
 
-the example above, add the lists plugin to TinyMCE and configure toolbar. The toolbar configuration can be personalized with preferred functions supported by the editor.
 Another example of configuration could be:
 
 ~~~
