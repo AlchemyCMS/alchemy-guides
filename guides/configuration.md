@@ -56,7 +56,7 @@ Configuring TinyMCE Editor is pretty simple, all you can do is to create file:
 config/initializers/tinymce.rb
 ~~~
 
-copy the tinymce list plugin folder to 
+copy (for example) the tinymce list plugin folder to 
 ~~~
 vendor/assets/javascripts/tinymce/plugins
 ~~~
@@ -86,6 +86,7 @@ Alchemy::Tinymce.init = {
 }
 ~~~
 
+this example, add the textcolor plugin.
 
 
 
