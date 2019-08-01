@@ -90,6 +90,8 @@ Alchemy::Tinymce.init = {
 }
 ~~~
 
+the example above adds the colorpicker plugin to TinyMCE and configures the toolbar. The toolbar can be personalized with preferred buttons supported by tinymce.
+
 Another example of configuration could be:
 
 ~~~
@@ -102,7 +104,7 @@ Alchemy::Tinymce.init = {
 }
 ~~~
 
-this example, add the textcolor plugin.
+This example adds the textcolor plugin and adds its button to the toolbar.
 
 
 ## Setting a custom stylesheet
