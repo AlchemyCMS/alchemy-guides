@@ -74,13 +74,13 @@ Custom buttons always appear in all richtext editors in all elements in Alchemy.
 :::
 
 ## Adding editor plugins
-It’s possible to configure the editor with plugins.
+It is possible to extend the tinymce editor with plugins.
 All you have to do is to download the tinymce plugin and copy the folder to
 `vendor/assets/javascripts/tinymce/plugins`
 
 and add the following content to config/initializers/tinymce.rb
 
-~~~
+~~~ ruby
 Alchemy::Tinymce.init = {
   plugins: Alchemy::Tinymce.plugins + ['colorpicker'],
   toolbar: [
@@ -90,11 +90,11 @@ Alchemy::Tinymce.init = {
 }
 ~~~
 
-the example above adds the colorpicker plugin to TinyMCE and configures the toolbar. The toolbar can be personalized with preferred buttons supported by tinymce.
+The example above adds the colorpicker plugin to TinyMCE and configures the toolbar. The toolbar can be personalized with preferred buttons supported by tinymce.
 
 Another example of configuration could be:
 
-~~~
+~~~ ruby
 Alchemy::Tinymce.plugins += ['textcolor']
 Alchemy::Tinymce.init = {
   toolbar: [
