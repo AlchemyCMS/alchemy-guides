@@ -145,8 +145,6 @@ See the [rendering images](render_images.html) guide for further information on 
 
 ### Settings
 
-You can customize the Tinymce editor of a single element instance.
-
 * **size** `String`
 
   The size the image should be downsized to. I.e. 400x300
@@ -192,6 +190,8 @@ Stores a `Boolean` value in the database. Renders a checkbox in the editor parti
 Renders a select box in the editor partial and stores the value as `String`.
 
 Useful for letting your user select from a limited set of choices.
+
+### Settings
 
 * **select_values** `Array`
   
