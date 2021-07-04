@@ -34,7 +34,7 @@ The core modules can be extended by own modules. A module should be a Rails engi
 
 Unlike many other CMS's that store a whole page body with complete HTML markup, Alchemy only stores unformatted text, ids of objects (like attachments and pictures) and only some  richtext content in the database. No HTML markup, no CSS, no styling, no layout. Just pure content.
 
-You, the webdeveloper is in full control of the markup and styling. The editor just manages the content.
+You, the webdeveloper are in full control of the markup and styling. The editor just manages the content.
 
 ### The render flow
 
@@ -67,7 +67,7 @@ An essence is the smallest part of content in Alchemy and represents a headline,
 
 Alchemy uses [ImageMagick®](https://www.imagemagick.org) and [Dragonfly](http://markevans.github.io/dragonfly/) to render images on-the-fly.
 
-Images are stored as master images in the picture library. The editor just assigns these images to elements you provide them. You also set the image rendering bounderies. The max width and heigth values, or even the size an image should be cropped to. Alchemy comes with a built-in image cropping tool, so that the editor can define the mask to be used.
+Images are stored as master images in the picture library. The editor just assigns these images to elements you provide them. You also set the image rendering bounderies. The max width and height values, or even the size an image should be cropped to. Alchemy comes with a built-in image cropping tool, so that the editor can define the mask to be used.
 
 [Read more about how to use the powerful image processing tools](render_images.html).
 
