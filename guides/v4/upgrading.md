@@ -19,8 +19,8 @@ If you use Alchemy from a git branch, point it to the next stable release.
 
 ~~~diff
 ...
--gem 'alchemy_cms', github: 'AlchemyCMS/alchemy_cms', branch: '5.2-stable'
-+gem 'alchemy_cms', github: 'AlchemyCMS/alchemy_cms', branch: '5.3-stable'
+-gem 'alchemy_cms', github: 'AlchemyCMS/alchemy_cms', branch: '4.5-stable'
++gem 'alchemy_cms', github: 'AlchemyCMS/alchemy_cms', branch: '4.6-stable'
 ...
 ~~~
 
@@ -28,8 +28,8 @@ If you use Alchemy from rubygems, point it to the next stable release.
 
 ~~~diff
 ...
--gem 'alchemy_cms', '~> 5.2'
-+gem 'alchemy_cms', '~> 5.3'
+-gem 'alchemy_cms', '~> 4.5'
++gem 'alchemy_cms', '~> 4.6'
 ...
 ~~~
 
@@ -37,10 +37,10 @@ If you are using `alchemy-devise` for authentication, then update the gem as wel
 
 ~~~diff
 ...
--gem 'alchemy_cms', '~> 5.2'
-+gem 'alchemy_cms', '~> 5.3'
--gem 'alchemy-devise', '~> 5.2'
-+gem 'alchemy-devise', '~> 5.3'
+-gem 'alchemy_cms', '~> 4.5'
++gem 'alchemy_cms', '~> 4.6'
+-gem 'alchemy-devise', '~> 4.5'
++gem 'alchemy-devise', '~> 4.6'
 ...
 ~~~
 

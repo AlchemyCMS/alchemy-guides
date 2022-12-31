@@ -3,7 +3,7 @@ prev: false
 next: about
 ---
 
-# Getting Started
+# Getting Started v4
 
 This guide covers getting up and running with AlchemyCMS. After reading it, you should be familiar with:
 
