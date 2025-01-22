@@ -562,3 +562,49 @@ You can use the icons to copy and cut a specific element from its expanded state
 You can view the contents of the clipboard using the icon at the top of the elements bar.
 
 When adding a new top-level element, the "Paste from clipboard" tab will be visible if the clipboard is storing any elements.
+
+
+## Deprecating an element
+
+Occasionally, an element needs to be removed, either because it is no
+longer in use or is being replaced by another.
+Alchemy provides a straightforward deprecation system to notify editors of such changes.
+
+### Mark an element as deprecated
+
+Add `deprecated: true` to the element definition to mark it as deprecated:
+~~~ yaml
+- name: hero_carousel_element
+  deprecated: true
+~~~
+
+By default, a deprecation notice will be displayed with the following message:
+
+```WARNING! This element is deprecated and will be removed soon. Please do not use it anymore.```
+
+
+Alternatively, you can provide a custom message for a specific element by passing a string:
+~~~ yaml
+- name: hero_carousel_element
+  deprecated: Hero Carousel will is obsolete and be removed very soon. Please use basic_carousel instead
+~~~
+
+### Customizing Deprecation Notices
+You can customize deprecation messages in your i18n files:
+
+#### Element-Specific Notices
+Define a specific notice for an individual element by name:
+~~~ yaml
+en:
+  alchemy:
+    element_deprecation_notices:
+      hero_carousel_element: Hero carousel will be removed very soon. Don't use anymore ;-)
+~~~
+
+#### Global Notice
+Modify the general deprecation notice applied to all elements:
+~~~ yaml
+en:
+  alchemy:
+    element_deprecation_notice: This element is obsolete and will be removed very soon.
+~~~
