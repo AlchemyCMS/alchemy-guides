@@ -15,6 +15,8 @@ Updating Alchemy is mostly three steps.
 2. [Run the upgrade task](#run-the-upgrade-task)
 3. [Follow ups](#follow-ups)
 
+If you are upgrading to a new major version, read the [Major version upgrades](#major-version-upgrades) section first.
+
 ## Update the gem
 
 If you use Alchemy from a git branch, point it to the next stable release.
@@ -52,38 +54,42 @@ Now update via bundler
 bundle update alchemy_cms alchemy-devise
 ~~~
 
+If your project uses other Alchemy-related gems such as `alchemy-dragonfly-s3`, `alchemy-pg_search`, `alchemy_i18n` or `alchemy-sentry`, make sure to update those as well.
+
 ## Run the upgrade task
 
-Now you can run the upgrade task. While upgrading, you will get informations about the process on your screen.
+Now you can run the upgrade task. While upgrading, you will get information about the process on your screen.
 
 ~~~bash
-bin/rake alchemy:upgrade
+bin/rails alchemy:upgrade
 ~~~
 
 and follow the on screen instructions.
 
 ### Update the default config
 
-If new configuration options have been introduced you see them in the `config/alchemy/config.yml.defaults` file. Simply copy them over and have a look at the `git diff`. Keep your changes remove or add new keys as necessary.
+If new configuration options have been introduced, have a look at the `git diff` after running the upgrade task. Update your configuration file to keep your individual settings and add or remove keys as necessary.
 
-If you have also `alchemy-devise` installed you need to .
+If you have also `alchemy-devise` installed you need to run the alchemy devise installer again.
 
 ~~~bash
-bin/rails g alchemy_devise:install
+bin/rails g alchemy:devise:install
 ~~~
+
+The installer will overwrite your `config/initializers/devise.rb`. Review the diff carefully afterwards and restore any project-specific settings.
 
 ### Run single upgrade tasks
 
-Upgrade tasks can also be run on its own. For example to run only the `alchemy:upgrade:config` task:
+Upgrade tasks can also be run on their own. For example to run only the `alchemy:upgrade:config` task:
 
 ~~~bash
-bin/rake alchemy:upgrade:config
+bin/rails alchemy:upgrade:config
 ~~~
 
 A list of all upgrade tasks can be listed with
 
 ~~~bash
-bin/rake -T alchemy:upgrade
+bin/rails -T alchemy:upgrade
 ~~~
 
 ## Follow ups
@@ -94,9 +100,13 @@ Please follow them carefully.
 
 ## Major version upgrades
 
-Major version upgrades follow the same upgrade process as minor versions, but they will have breaking changes.
+If you are upgrading to a new major version, make sure to fix all deprecation warnings first and run all upgrades in the current version before upgrading to the next major version.
 
-Major versions remove deprecated features and old upgrade tasks. Please make sure you addressed all deprecations and run all upgrades in the current version before upgrading to the next major version.
+Major versions remove deprecated features and old upgrade tasks, so unaddressed deprecations may become breaking changes after the upgrade.
+
+To find out about breaking changes, have a look at the [release notes](https://github.com/AlchemyCMS/alchemy_cms/releases).
+
+Otherwise, major version upgrades follow the same upgrade process as minor versions.
 
 ## Finally
 
