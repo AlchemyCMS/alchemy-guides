@@ -272,6 +272,10 @@ const VERSION_NAVITEMS = {
           link: "/how_to_deploy_with_kamal",
         },
         {
+          text: "Deploy on Kubernetes",
+          link: "/how_to_deploy_on_kubernetes",
+        },
+        {
           text: "Add Custom Authentication",
           link: "/how_to_add_custom_authentication",
         },
