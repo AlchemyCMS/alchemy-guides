@@ -2,6 +2,10 @@
 
 # The AlchemyCMS Guides
 
+> [!IMPORTANT]
+> Starting with Alchemy CMS 9.0, `alchemy-guides` lives in the [`guides/` directory of the Alchemy CMS repository](https://github.com/AlchemyCMS/alchemy_cms/tree/main/guides)
+> Please open issues and pull requests for new guidelines there.
+
 The guides are created with [VitePress](https://vitepress.dev/) and are written in [Markdown](https://daringfireball.net/projects/markdown/syntax).
 
 [![Deploys by Netlify](https://www.netlify.com/img/global/badges/netlify-color-bg.svg)](https://www.netlify.com)
